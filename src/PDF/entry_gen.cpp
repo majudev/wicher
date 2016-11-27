@@ -8,19 +8,19 @@ Wicher::PDF::Entry::Entry(std::string name, std::string type, std::vector<int> i
 Wicher::PDF::EntryGen::EntryGen(){}
 
 void Wicher::PDF::EntryGen::append(int id, std::string name, std::string type){
-	Entry e;
 	bool found = false;
 	for(std::vector<Entry>::iterator iter = this->entries.begin(); iter != this->entries.end() && !found; ++iter){
-		e = *iter;
-		if(e.type == type){
+		if((*iter).type == type){
 			found = true;
+			(*iter).ids.push_back(id);
 			break;
 		}
 	}
-	e.ids.push_back(id);
 	if(!found){
+		Entry e;
 		e.type = type;
 		e.name = name;
+		e.ids.push_back(id);
 		this->entries.push_back(e);
 	}
 }
