@@ -99,7 +99,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/config.h
+CONFIG_HEADER = $(top_builddir)/buildconfig.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
@@ -132,9 +132,10 @@ am_wicher_OBJECTS = wicher-Toolkit.$(OBJEXT) wicher-Config.$(OBJEXT) \
 	PDF/wicher-pz_gen.$(OBJEXT) Main/wicher-Main.$(OBJEXT) \
 	wicher-main.$(OBJEXT)
 wicher_OBJECTS = $(am_wicher_OBJECTS)
-wicher_LDADD = $(LDADD)
-wicher_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(wicher_LDFLAGS) \
-	$(LDFLAGS) -o $@
+am__DEPENDENCIES_1 =
+wicher_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -210,6 +211,7 @@ BOOST_THREAD_LIB = @BOOST_THREAD_LIB@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
 CXXDEPMODE = @CXXDEPMODE@
@@ -220,7 +222,9 @@ DEPDIR = @DEPDIR@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+EGREP = @EGREP@
 EXEEXT = @EXEEXT@
+GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -295,7 +299,6 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
-runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -339,7 +342,7 @@ wicher_SOURCES = Toolkit.cpp \
 	main.cpp
 
 wicher_CPPFLAGS = $(gtkmm3_CFLAGS) $(jansson_CFLAGS) $(BOOST_CPPFLAGS) $(AM_CPPFLAGS)
-wicher_LDFLAGS = $(gtkmm3_LIBS) $(jansson_LIBS) $(BOOST_LDFLAGS) $(BOOST_THREAD_LIB) $(BOOST_SYSTEM_LIB) -lhpdf
+wicher_LDADD = $(gtkmm3_LIBS) $(jansson_LIBS) $(BOOST_LDFLAGS) $(BOOST_THREAD_LIB) $(BOOST_SYSTEM_LIB) -lhpdf
 all: all-am
 
 .SUFFIXES:
@@ -519,7 +522,7 @@ Main/wicher-Main.$(OBJEXT): Main/$(am__dirstamp) \
 
 wicher$(EXEEXT): $(wicher_OBJECTS) $(wicher_DEPENDENCIES) $(EXTRA_wicher_DEPENDENCIES) 
 	@rm -f wicher$(EXEEXT)
-	$(AM_V_CXXLD)$(wicher_LINK) $(wicher_OBJECTS) $(wicher_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(CXXLINK) $(wicher_OBJECTS) $(wicher_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -1248,6 +1251,7 @@ uninstall-am: uninstall-binPROGRAMS
 
 .PRECIOUS: Makefile
 
+@USE_WINSOCK_TRUE@	wicher_LDADD += -lws2_32
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

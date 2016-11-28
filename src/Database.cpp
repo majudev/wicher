@@ -91,7 +91,11 @@ static bool send_msg(std::string msg, int sock){
         return false;
     }
     uint16_t msize = msg.size() + 1;
+#ifdef WIN
+    int res = send(sock, (char*) &msize, 2, 0);
+#else
     int res = send(sock, &msize, 2, 0);
+#endif
     if(res != 2){
         Wicher::Toolkit::log("Failed to send message (cannot send msg size)");
         return false;
@@ -114,7 +118,11 @@ bool Wicher::Database::send(std::string msg){
 
 static std::string recv_msg(int sock){
     uint16_t msize;
+#ifdef WIN
+    int res = recv(sock, (char*) &msize, 2, 0);
+#else
     int res = recv(sock, &msize, 2, 0);
+#endif
     if(res != 2){
         Wicher::Toolkit::log("Failed to recv message (cannot recv msg size)");
         return std::string();

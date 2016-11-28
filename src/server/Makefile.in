@@ -89,6 +89,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = wicher_local_server$(EXEEXT)
+@USE_WINSOCK_TRUE@am__append_1 = -lws2_32
 subdir = src/server
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_boost_base.m4 \
@@ -99,7 +100,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/config.h
+CONFIG_HEADER = $(top_builddir)/buildconfig.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
@@ -118,9 +119,9 @@ am_wicher_local_server_OBJECTS =  \
 	wicher_local_server-MessageParser.$(OBJEXT) \
 	wicher_local_server-Toolkit.$(OBJEXT)
 wicher_local_server_OBJECTS = $(am_wicher_local_server_OBJECTS)
-wicher_local_server_LDADD = $(LDADD)
-wicher_local_server_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
-	$(wicher_local_server_LDFLAGS) $(LDFLAGS) -o $@
+am__DEPENDENCIES_1 =
+wicher_local_server_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -196,6 +197,7 @@ BOOST_THREAD_LIB = @BOOST_THREAD_LIB@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
 CXXDEPMODE = @CXXDEPMODE@
@@ -206,7 +208,9 @@ DEPDIR = @DEPDIR@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
+EGREP = @EGREP@
 EXEEXT = @EXEEXT@
+GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -281,7 +285,6 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
-runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -306,7 +309,7 @@ wicher_local_server_SOURCES = ConnectionManager.cpp \
 	Toolkit.cpp
 
 wicher_local_server_CPPFLAGS = $(jansson_CFLAGS) $(AM_CPPFLAGS)
-wicher_local_server_LDFLAGS = $(jansson_LIBS)
+wicher_local_server_LDADD = $(jansson_LIBS) $(am__append_1)
 all: all-am
 
 .SUFFIXES:
@@ -385,7 +388,7 @@ clean-binPROGRAMS:
 
 wicher_local_server$(EXEEXT): $(wicher_local_server_OBJECTS) $(wicher_local_server_DEPENDENCIES) $(EXTRA_wicher_local_server_DEPENDENCIES) 
 	@rm -f wicher_local_server$(EXEEXT)
-	$(AM_V_CXXLD)$(wicher_local_server_LINK) $(wicher_local_server_OBJECTS) $(wicher_local_server_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(CXXLINK) $(wicher_local_server_OBJECTS) $(wicher_local_server_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

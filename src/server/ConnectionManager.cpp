@@ -91,7 +91,11 @@ bool Wicher::DB::ConnectionManager::get_connection(){
 
 std::string Wicher::DB::ConnectionManager::recv_msg(){
     uint16_t msize;
+#ifdef WIN
+    int res = recv(clientsock, (char*) &msize, 2, 0);
+#else
     int res = recv(clientsock, &msize, 2, 0);
+#endif
     if(res != 2){
         Log::server("Failed to recv message (cannot recv msg size)");
         return std::string();
@@ -132,7 +136,11 @@ bool Wicher::DB::ConnectionManager::send_msg(std::string msg){
         return false;
     }
     uint16_t msize = msg.size() + 1;
+#ifdef WIN
+    int res = send(clientsock, (char*) &msize, 2, 0);
+#else
     int res = send(clientsock, &msize, 2, 0);
+#endif
     if(res != 2){
         Log::server("Failed to send message (cannot send msg size)");
         return false;

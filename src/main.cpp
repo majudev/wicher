@@ -5,7 +5,7 @@
 #include "Database.h"
 
 #if defined(_WIN32) || defined(WIN32)
-#include <windows.h>
+#include <direct.h>
 #define ChangeCurrentDir(x) _chdir(x)
 int GetCurrentDir(char * ownPth, size_t ownPth_size){
 	// Will contain exe path

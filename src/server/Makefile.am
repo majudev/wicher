@@ -14,4 +14,7 @@ wicher_local_server_SOURCES = ConnectionManager.cpp \
 	MessageParser.cpp \
 	Toolkit.cpp
 wicher_local_server_CPPFLAGS = $(jansson_CFLAGS) $(AM_CPPFLAGS)
-wicher_local_server_LDFLAGS = $(jansson_LIBS)
+wicher_local_server_LDADD = $(jansson_LIBS)
+if USE_WINSOCK
+        wicher_local_server_LDADD += -lws2_32
+endif

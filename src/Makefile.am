@@ -33,4 +33,7 @@ wicher_SOURCES = Toolkit.cpp \
 	Main/Main.cpp \
 	main.cpp
 wicher_CPPFLAGS = $(gtkmm3_CFLAGS) $(jansson_CFLAGS) $(BOOST_CPPFLAGS) $(AM_CPPFLAGS)
-wicher_LDFLAGS = $(gtkmm3_LIBS) $(jansson_LIBS) $(BOOST_LDFLAGS) $(BOOST_THREAD_LIB) $(BOOST_SYSTEM_LIB) -lhpdf
+wicher_LDADD = $(gtkmm3_LIBS) $(jansson_LIBS) $(BOOST_LDFLAGS) $(BOOST_THREAD_LIB) $(BOOST_SYSTEM_LIB) -lhpdf
+if USE_WINSOCK
+	wicher_LDADD += -lws2_32
+endif
