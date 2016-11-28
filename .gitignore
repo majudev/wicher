@@ -1,2 +1,4 @@
 /build
 /autom4te.cache
+/prebuilt_windows_x64.tar.xz
+/prebuilt_windows_x86.tar.xz
