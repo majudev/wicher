@@ -1,4 +1,5 @@
 #include "Main.h"
+#include "buildconfig.h"
 
 Wicher::Main::Main(int argc, char * argv[]){
     Toolkit::log("Preparing GUI... (net.majudev.wicher.gtk.main)");
@@ -17,6 +18,7 @@ Wicher::Main::Main(int argc, char * argv[]){
     info_window = new ToolbarInfo(Glib::RefPtr<Gtk::Window>(window));
 
     window->maximize();
+	window->set_title(PACKAGE_STRING);
 
     if(window){
         Wicher::Toolkit::set_icon(window);

@@ -1,4 +1,4 @@
-AC_INIT([Wicher], [2.3], [maju@debian])
+AC_INIT([Wicher], [2.3.1], [maju@majudev.net])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AC_CONFIG_MACRO_DIR([m4])
 AX_BOOST_BASE([1.58])
