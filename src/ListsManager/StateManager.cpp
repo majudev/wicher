@@ -120,7 +120,7 @@ bool Wicher::ListsManager::refresh_lists(){
         free(root);
 
         Gtk::TreeView * view = Gtk::manage(new Gtk::TreeView());
-        Gtk::Label * label = Gtk::manage(new Gtk::Label(name));
+		Gtk::Label * label = Gtk::manage(new Gtk::Label(name));
         view->set_model(list);
         view->append_column("ID", entry_columns.id);
         view->append_column("Dostępność", entry_columns.available);
@@ -150,7 +150,13 @@ bool Wicher::ListsManager::refresh_lists(){
         Gtk::Box * box = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
         Gtk::Button * button = Gtk::manage(new Gtk::Button("Dodaj"));
         button->signal_clicked().connect( sigc::mem_fun(sw, &Wicher::SignalWindows::show_create_item_window) );
-        box->pack_start(*view, true, true, 0);
+
+        Gtk::ScrolledWindow * scrolled_win = Gtk::manage(new Gtk::ScrolledWindow());
+        scrolled_win->add(*view);
+        scrolled_win->set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
+		scrolled_win->set_shadow_type(Gtk::SHADOW_NONE);
+
+        box->pack_start(*scrolled_win, true, true, 0);
         box->pack_start(*button, false, false, 0);
 
         this->state_notepad->append_page(*box, *label);
