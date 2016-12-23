@@ -237,7 +237,8 @@ void Wicher::ListsManager::on_item_comment_edited(const Glib::ustring& path_stri
 void Wicher::ListsManager::on_item_checkbox_toggled(const Glib::ustring& path){
     Glib::ustring label = this->state_notepad->get_tab_label_text(*this->state_notepad->get_nth_page(this->state_notepad->get_current_page()));
     Gtk::Widget * widget_ptr = this->state_notepad->get_nth_page(this->state_notepad->get_current_page());
-    Gtk::Box * box = static_cast<Gtk::Box *>(widget_ptr);
+	Gtk::ScrolledWindow * scrolled_win = static_cast<Gtk::ScrolledWindow *>(widget_ptr);
+    Gtk::Box * box = static_cast<Gtk::Box *>(scrolled_win->get_children()[0]);
     Gtk::Widget * tree_widget = box->get_children()[0];
     if(Gtk::TreeView * view_ptr = dynamic_cast<Gtk::TreeView*>(tree_widget)){
         Glib::RefPtr<Gtk::ListStore> list_ptr = Glib::RefPtr<Gtk::ListStore>::cast_static(view_ptr->get_model());
@@ -248,5 +249,6 @@ void Wicher::ListsManager::on_item_checkbox_toggled(const Glib::ustring& path){
                 row[entry_columns.checkbox] = !row[entry_columns.checkbox];
             }
         }
+		std::cout << std::endl;
     }
 }
