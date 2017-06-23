@@ -8,6 +8,7 @@
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="destroy_with_parent">True</property>
+    <signal name="destroy-event" handler="gtk_widget_hide_on_delete" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -164,6 +165,8 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <signal name="clicked" handler="signalwindows_on_new_wz_ok_button_clicked" swapped="no"/>
+            <accelerator key="Return" signal="clicked"/>
           </object>
           <packing>
             <property name="expand">False</property>

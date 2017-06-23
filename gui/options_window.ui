@@ -4,6 +4,7 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="options_window">
     <property name="can_focus">False</property>
+    <signal name="delete-event" handler="gtk_widget_hide_on_delete" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -82,6 +83,7 @@
                   <object class="GtkSwitch" id="options_safety_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <signal name="state-set" handler="options_window_on_switch_state_set" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -109,6 +111,8 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <signal name="clicked" handler="options_window_on_ok_click" swapped="no"/>
+            <accelerator key="Return" signal="clicked"/>
           </object>
           <packing>
             <property name="expand">False</property>

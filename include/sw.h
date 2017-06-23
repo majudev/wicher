@@ -1,0 +1,80 @@
+#ifndef SIGNALWINDOWS_H
+#define SIGNALWINDOWS_H
+
+enum { ITEMS_LIST_COLUMNS_ID, ITEMS_LIST_COLUMNS_TYPE, ITEMS_LIST_COLUMNS_TYPE_NAME };
+
+extern bool signalwindows_init();
+extern void signalwindows_show_create_item_window();
+extern void signalwindows_show_info_item_window(GtkTreeView * view, GtkTreePath * path, GtkTreeViewColumn * column, gpointer user_data);
+extern void signalwindows_show_add_items_window(const char * type_name, const char * type);
+extern void signalwindows_show_info_pz_window_h(GtkTreeIter * iter);
+extern void signalwindows_show_create_pz_window(int wz_id);
+
+extern GtkWindow * new_type_window;
+extern GtkEntry * new_type_name_entry;
+extern GtkEntry * new_type_id_entry;
+extern GtkEntry * new_type_comment_entry;
+extern GtkButton * new_type_ok_button;
+extern GtkWindow * new_item_window;
+extern GtkEntry * new_item_type_name_entry;
+extern GtkEntry * new_item_type_entry;
+extern GtkEntry * new_item_comment_entry;
+extern GtkButton * new_item_ok_button;
+extern GtkWindow * new_wz_window;
+extern GtkEntry * new_wz_person_entry;
+extern GtkCalendar * new_wz_date_entry;
+extern GtkEntry * new_wz_comment_entry;
+extern GtkButton * new_wz_ok_button;
+extern GtkWindow * new_pz_window;
+extern GtkEntry * new_pz_wz_id_entry;
+extern GtkEntry * new_pz_person_entry;
+extern GtkCalendar * new_pz_date_entry;
+extern GtkEntry * new_pz_comment_entry;
+extern GtkButton * new_pz_ok_button;
+extern GtkWindow * info_type_window;
+extern GtkEntry * info_type_name_entry;
+extern GtkEntry * info_type_id_entry;
+extern GtkEntry * info_type_available_entry;
+extern GtkEntry * info_type_unavailable_entry;
+extern GtkEntry * info_type_total_entry;
+extern GtkEntry * info_type_comment_entry;
+extern GtkButton * info_type_delete_button;
+extern GtkButton * info_type_add_button;
+extern GtkButton * info_type_close_button;
+extern GtkWindow * add_items_window;
+extern GtkEntry * add_items_type_name_entry;
+extern GtkEntry * add_items_type_entry;
+extern GtkSpinButton * add_items_count_spin;
+extern GtkEntry * add_items_comment_entry;
+extern GtkButton * add_items_ok_button;
+extern GtkWindow * info_item_window;
+extern GtkEntry * info_item_id_entry;
+extern GtkEntry * info_item_type_entry;
+extern GtkEntry * info_item_type_name_entry;
+extern GtkEntry * info_item_comment_entry;
+extern GtkButton * info_item_delete_button;
+extern GtkButton * info_item_copy_button;
+extern GtkButton * info_item_close_button;
+extern GtkWindow * info_wz_window;
+extern GtkEntry * info_wz_id_entry;
+extern GtkEntry * info_wz_person_entry;
+extern GtkBox * info_wz_return_date_box;
+extern GtkEntry * info_wz_return_date_entry;
+extern GtkEntry * info_wz_date_entry;
+extern GtkEntry * info_wz_comment_entry;
+extern GtkTreeView * info_wz_items_tree;
+extern GtkListStore * info_wz_items_list;
+extern GtkButton * info_wz_pz_button;
+extern GtkButton * info_wz_print_button;
+extern GtkButton * info_wz_ok_button;
+extern GtkWindow * info_pz_window;
+extern GtkEntry * info_pz_id_entry;
+extern GtkEntry * info_pz_wz_id_entry;
+extern GtkEntry * info_pz_person_entry;
+extern GtkEntry * info_pz_date_entry;
+extern GtkEntry * info_pz_comment_entry;
+extern GtkTreeView * info_pz_items_tree;
+extern GtkListStore * info_pz_items_list;
+extern GtkButton * info_pz_print_button;
+
+#endif

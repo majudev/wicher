@@ -105,37 +105,31 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_wicher_OBJECTS = wicher-Toolkit.$(OBJEXT) wicher-Config.$(OBJEXT) \
-	wicher-Dialogger.$(OBJEXT) Splash/wicher-RunServer.$(OBJEXT) \
-	Splash/wicher-Splash.$(OBJEXT) wicher-Database.$(OBJEXT) \
-	wicher-DatabaseQuery.$(OBJEXT) wicher-sha256.$(OBJEXT) \
-	Main/wicher-Builder.$(OBJEXT) \
-	Toolbar/wicher-ToolbarOptions.$(OBJEXT) \
+am_wicher_OBJECTS = wicher-sha256.$(OBJEXT) wicher-Toolkit.$(OBJEXT) \
+	wicher-Dialogger.$(OBJEXT) wicher-Database.$(OBJEXT) \
+	wicher-DatabaseQuery.$(OBJEXT) Splash/wicher-Splash.$(OBJEXT) \
+	Splash/wicher-RunServer.$(OBJEXT) Main/wicher-Main.$(OBJEXT) \
 	Toolbar/wicher-ToolbarInfo.$(OBJEXT) \
-	SignalWindows/wicher-CreateTypeWindow.$(OBJEXT) \
-	SignalWindows/wicher-CreateItemWindow.$(OBJEXT) \
-	SignalWindows/wicher-CreateWZWindow.$(OBJEXT) \
-	SignalWindows/wicher-CreatePZWindow.$(OBJEXT) \
-	SignalWindows/wicher-InfoTypeWindow.$(OBJEXT) \
-	SignalWindows/wicher-AddItemsWindow.$(OBJEXT) \
-	SignalWindows/wicher-InfoItemWindow.$(OBJEXT) \
-	SignalWindows/wicher-InfoWZWindow.$(OBJEXT) \
-	SignalWindows/wicher-InfoPZWindow.$(OBJEXT) \
-	SignalWindows/wicher-SignalWindows.$(OBJEXT) \
-	ListsManager/wicher-StateManager.$(OBJEXT) \
-	ListsManager/wicher-Refresh.$(OBJEXT) \
-	ListsManager/wicher-ColumnModels.$(OBJEXT) \
+	Toolbar/wicher-ToolbarOptions.$(OBJEXT) \
 	ListsManager/wicher-Constructor.$(OBJEXT) \
-	ListsManager/wicher-ListsSignals.$(OBJEXT) \
-	ListsManager/wicher-ListsEditSignals.$(OBJEXT) \
-	PDF/wicher-entry_gen.$(OBJEXT) PDF/wicher-wz_gen.$(OBJEXT) \
-	PDF/wicher-pz_gen.$(OBJEXT) Main/wicher-Main.$(OBJEXT) \
+	ListsManager/wicher-Refresh.$(OBJEXT) \
+	ListsManager/wicher-StateManager.$(OBJEXT) \
+	SignalWindows/wicher-SignalWindows.$(OBJEXT) \
+	SignalWindows/wicher-AddItemsWindow.$(OBJEXT) \
+	SignalWindows/wicher-CreateItemWindow.$(OBJEXT) \
+	SignalWindows/wicher-CreatePZWindow.$(OBJEXT) \
+	SignalWindows/wicher-CreateWZWindow.$(OBJEXT) \
+	SignalWindows/wicher-CreateTypeWindow.$(OBJEXT) \
+	SignalWindows/wicher-InfoTypeWindow.$(OBJEXT) \
+	SignalWindows/wicher-InfoPZWindow.$(OBJEXT) \
+	SignalWindows/wicher-InfoWZWindow.$(OBJEXT) \
+	SignalWindows/wicher-InfoItemWindow.$(OBJEXT) \
 	wicher-main.$(OBJEXT)
 wicher_OBJECTS = $(am_wicher_OBJECTS)
 am__DEPENDENCIES_1 =
-wicher_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+wicher_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+wicher_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(wicher_LDFLAGS) \
+	$(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -156,19 +150,18 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
-AM_V_CXX = $(am__v_CXX_@AM_V@)
-am__v_CXX_ = $(am__v_CXX_@AM_DEFAULT_V@)
-am__v_CXX_0 = @echo "  CXX     " $@;
-am__v_CXX_1 = 
-CXXLD = $(CXX)
-CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
-	-o $@
-AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
-am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
-am__v_CXXLD_0 = @echo "  CXXLD   " $@;
-am__v_CXXLD_1 = 
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+AM_V_CC = $(am__v_CC_@AM_V@)
+am__v_CC_ = $(am__v_CC_@AM_DEFAULT_V@)
+am__v_CC_0 = @echo "  CC      " $@;
+am__v_CC_1 = 
+CCLD = $(CC)
+LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+AM_V_CCLD = $(am__v_CCLD_@AM_V@)
+am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
+am__v_CCLD_0 = @echo "  CCLD    " $@;
+am__v_CCLD_1 = 
 SOURCES = $(wicher_SOURCES)
 DIST_SOURCES = $(wicher_SOURCES)
 am__can_run_installinfo = \
@@ -275,6 +268,8 @@ datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
+gtk3_CFLAGS = @gtk3_CFLAGS@
+gtk3_LIBS = @gtk3_LIBS@
 gtkmm3_CFLAGS = @gtkmm3_CFLAGS@
 gtkmm3_LIBS = @gtkmm3_LIBS@
 host = @host@
@@ -299,6 +294,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -308,45 +304,71 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include
-wicher_SOURCES = Toolkit.cpp \
-	Config.cpp \
-	Dialogger.cpp \
-	Splash/RunServer.cpp \
-	Splash/Splash.cpp \
-	Database.cpp \
-	DatabaseQuery.cpp \
-	sha256.cpp \
-	Main/Builder.cpp \
-	Toolbar/ToolbarOptions.cpp \
-	Toolbar/ToolbarInfo.cpp \
-	SignalWindows/CreateTypeWindow.cpp \
-	SignalWindows/CreateItemWindow.cpp \
-	SignalWindows/CreateWZWindow.cpp \
-	SignalWindows/CreatePZWindow.cpp \
-	SignalWindows/InfoTypeWindow.cpp \
-	SignalWindows/AddItemsWindow.cpp \
-	SignalWindows/InfoItemWindow.cpp \
-	SignalWindows/InfoWZWindow.cpp \
-	SignalWindows/InfoPZWindow.cpp \
-	SignalWindows/SignalWindows.cpp \
-	ListsManager/StateManager.cpp \
-	ListsManager/Refresh.cpp \
-	ListsManager/ColumnModels.cpp \
-	ListsManager/Constructor.cpp \
-	ListsManager/ListsSignals.cpp \
-	ListsManager/ListsEditSignals.cpp \
-	PDF/entry_gen.cpp \
-	PDF/wz_gen.cpp \
-	PDF/pz_gen.cpp \
-	Main/Main.cpp \
-	main.cpp
+#wicher_SOURCES = Toolkit.cpp \
+#	Config.cpp \
+#	Dialogger.cpp \
+#	Splash/RunServer.cpp \
+#	Splash/Splash.cpp \
+#	Database.cpp \
+#	DatabaseQuery.cpp \
+#	sha256.cpp \
+#	Main/Builder.cpp \
+#	Toolbar/ToolbarOptions.cpp \
+#	Toolbar/ToolbarInfo.cpp \
+#	SignalWindows/CreateTypeWindow.cpp \
+#	SignalWindows/CreateItemWindow.cpp \
+#	SignalWindows/CreateWZWindow.cpp \
+#	SignalWindows/CreatePZWindow.cpp \
+#	SignalWindows/InfoTypeWindow.cpp \
+#	SignalWindows/AddItemsWindow.cpp \
+#	SignalWindows/InfoItemWindow.cpp \
+#	SignalWindows/InfoWZWindow.cpp \
+#	SignalWindows/InfoPZWindow.cpp \
+#	SignalWindows/SignalWindows.cpp \
+#	ListsManager/StateManager.cpp \
+#	ListsManager/Refresh.cpp \
+#	ListsManager/ColumnModels.cpp \
+#	ListsManager/Constructor.cpp \
+#	ListsManager/ListsSignals.cpp \
+#	ListsManager/ListsEditSignals.cpp \
+#	PDF/entry_gen.cpp \
+#	PDF/wz_gen.cpp \
+#	PDF/pz_gen.cpp \
+#	Main/Main.cpp \
+#	main.cpp
+wicher_SOURCES = \
+	sha256.c \
+	Toolkit.c \
+	Dialogger.c \
+	Database.c \
+	DatabaseQuery.c \
+	Splash/Splash.c \
+	Splash/RunServer.c \
+	Main/Main.c \
+	Toolbar/ToolbarInfo.c \
+	Toolbar/ToolbarOptions.c \
+	ListsManager/Constructor.c \
+	ListsManager/Refresh.c \
+	ListsManager/StateManager.c \
+	SignalWindows/SignalWindows.c \
+	SignalWindows/AddItemsWindow.c \
+	SignalWindows/CreateItemWindow.c \
+	SignalWindows/CreatePZWindow.c \
+	SignalWindows/CreateWZWindow.c \
+	SignalWindows/CreateTypeWindow.c \
+	SignalWindows/InfoTypeWindow.c \
+	SignalWindows/InfoPZWindow.c \
+	SignalWindows/InfoWZWindow.c \
+	SignalWindows/InfoItemWindow.c \
+	main.c
 
-wicher_CPPFLAGS = $(gtkmm3_CFLAGS) $(jansson_CFLAGS) $(BOOST_CPPFLAGS) $(AM_CPPFLAGS)
-wicher_LDADD = $(gtkmm3_LIBS) $(jansson_LIBS) $(BOOST_LDFLAGS) $(BOOST_THREAD_LIB) $(BOOST_SYSTEM_LIB) -lhpdf
+wicher_CPPFLAGS = $(gtk3_CFLAGS) $(jansson_CFLAGS) $(AM_CPPFLAGS)
+wicher_LDFLAGS = -rdynamic
+wicher_LDADD = $(gtk3_LIBS) $(jansson_LIBS) -lhpdf
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .cpp .o .obj
+.SUFFIXES: .c .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -424,9 +446,9 @@ Splash/$(am__dirstamp):
 Splash/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) Splash/$(DEPDIR)
 	@: > Splash/$(DEPDIR)/$(am__dirstamp)
-Splash/wicher-RunServer.$(OBJEXT): Splash/$(am__dirstamp) \
-	Splash/$(DEPDIR)/$(am__dirstamp)
 Splash/wicher-Splash.$(OBJEXT): Splash/$(am__dirstamp) \
+	Splash/$(DEPDIR)/$(am__dirstamp)
+Splash/wicher-RunServer.$(OBJEXT): Splash/$(am__dirstamp) \
 	Splash/$(DEPDIR)/$(am__dirstamp)
 Main/$(am__dirstamp):
 	@$(MKDIR_P) Main
@@ -434,7 +456,7 @@ Main/$(am__dirstamp):
 Main/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) Main/$(DEPDIR)
 	@: > Main/$(DEPDIR)/$(am__dirstamp)
-Main/wicher-Builder.$(OBJEXT): Main/$(am__dirstamp) \
+Main/wicher-Main.$(OBJEXT): Main/$(am__dirstamp) \
 	Main/$(DEPDIR)/$(am__dirstamp)
 Toolbar/$(am__dirstamp):
 	@$(MKDIR_P) Toolbar
@@ -442,93 +464,69 @@ Toolbar/$(am__dirstamp):
 Toolbar/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) Toolbar/$(DEPDIR)
 	@: > Toolbar/$(DEPDIR)/$(am__dirstamp)
-Toolbar/wicher-ToolbarOptions.$(OBJEXT): Toolbar/$(am__dirstamp) \
-	Toolbar/$(DEPDIR)/$(am__dirstamp)
 Toolbar/wicher-ToolbarInfo.$(OBJEXT): Toolbar/$(am__dirstamp) \
 	Toolbar/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/$(am__dirstamp):
-	@$(MKDIR_P) SignalWindows
-	@: > SignalWindows/$(am__dirstamp)
-SignalWindows/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) SignalWindows/$(DEPDIR)
-	@: > SignalWindows/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/wicher-CreateTypeWindow.$(OBJEXT):  \
-	SignalWindows/$(am__dirstamp) \
-	SignalWindows/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/wicher-CreateItemWindow.$(OBJEXT):  \
-	SignalWindows/$(am__dirstamp) \
-	SignalWindows/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/wicher-CreateWZWindow.$(OBJEXT):  \
-	SignalWindows/$(am__dirstamp) \
-	SignalWindows/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/wicher-CreatePZWindow.$(OBJEXT):  \
-	SignalWindows/$(am__dirstamp) \
-	SignalWindows/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/wicher-InfoTypeWindow.$(OBJEXT):  \
-	SignalWindows/$(am__dirstamp) \
-	SignalWindows/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/wicher-AddItemsWindow.$(OBJEXT):  \
-	SignalWindows/$(am__dirstamp) \
-	SignalWindows/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/wicher-InfoItemWindow.$(OBJEXT):  \
-	SignalWindows/$(am__dirstamp) \
-	SignalWindows/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/wicher-InfoWZWindow.$(OBJEXT):  \
-	SignalWindows/$(am__dirstamp) \
-	SignalWindows/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/wicher-InfoPZWindow.$(OBJEXT):  \
-	SignalWindows/$(am__dirstamp) \
-	SignalWindows/$(DEPDIR)/$(am__dirstamp)
-SignalWindows/wicher-SignalWindows.$(OBJEXT):  \
-	SignalWindows/$(am__dirstamp) \
-	SignalWindows/$(DEPDIR)/$(am__dirstamp)
+Toolbar/wicher-ToolbarOptions.$(OBJEXT): Toolbar/$(am__dirstamp) \
+	Toolbar/$(DEPDIR)/$(am__dirstamp)
 ListsManager/$(am__dirstamp):
 	@$(MKDIR_P) ListsManager
 	@: > ListsManager/$(am__dirstamp)
 ListsManager/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) ListsManager/$(DEPDIR)
 	@: > ListsManager/$(DEPDIR)/$(am__dirstamp)
-ListsManager/wicher-StateManager.$(OBJEXT):  \
+ListsManager/wicher-Constructor.$(OBJEXT):  \
 	ListsManager/$(am__dirstamp) \
 	ListsManager/$(DEPDIR)/$(am__dirstamp)
 ListsManager/wicher-Refresh.$(OBJEXT): ListsManager/$(am__dirstamp) \
 	ListsManager/$(DEPDIR)/$(am__dirstamp)
-ListsManager/wicher-ColumnModels.$(OBJEXT):  \
+ListsManager/wicher-StateManager.$(OBJEXT):  \
 	ListsManager/$(am__dirstamp) \
 	ListsManager/$(DEPDIR)/$(am__dirstamp)
-ListsManager/wicher-Constructor.$(OBJEXT):  \
-	ListsManager/$(am__dirstamp) \
-	ListsManager/$(DEPDIR)/$(am__dirstamp)
-ListsManager/wicher-ListsSignals.$(OBJEXT):  \
-	ListsManager/$(am__dirstamp) \
-	ListsManager/$(DEPDIR)/$(am__dirstamp)
-ListsManager/wicher-ListsEditSignals.$(OBJEXT):  \
-	ListsManager/$(am__dirstamp) \
-	ListsManager/$(DEPDIR)/$(am__dirstamp)
-PDF/$(am__dirstamp):
-	@$(MKDIR_P) PDF
-	@: > PDF/$(am__dirstamp)
-PDF/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) PDF/$(DEPDIR)
-	@: > PDF/$(DEPDIR)/$(am__dirstamp)
-PDF/wicher-entry_gen.$(OBJEXT): PDF/$(am__dirstamp) \
-	PDF/$(DEPDIR)/$(am__dirstamp)
-PDF/wicher-wz_gen.$(OBJEXT): PDF/$(am__dirstamp) \
-	PDF/$(DEPDIR)/$(am__dirstamp)
-PDF/wicher-pz_gen.$(OBJEXT): PDF/$(am__dirstamp) \
-	PDF/$(DEPDIR)/$(am__dirstamp)
-Main/wicher-Main.$(OBJEXT): Main/$(am__dirstamp) \
-	Main/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/$(am__dirstamp):
+	@$(MKDIR_P) SignalWindows
+	@: > SignalWindows/$(am__dirstamp)
+SignalWindows/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) SignalWindows/$(DEPDIR)
+	@: > SignalWindows/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/wicher-SignalWindows.$(OBJEXT):  \
+	SignalWindows/$(am__dirstamp) \
+	SignalWindows/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/wicher-AddItemsWindow.$(OBJEXT):  \
+	SignalWindows/$(am__dirstamp) \
+	SignalWindows/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/wicher-CreateItemWindow.$(OBJEXT):  \
+	SignalWindows/$(am__dirstamp) \
+	SignalWindows/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/wicher-CreatePZWindow.$(OBJEXT):  \
+	SignalWindows/$(am__dirstamp) \
+	SignalWindows/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/wicher-CreateWZWindow.$(OBJEXT):  \
+	SignalWindows/$(am__dirstamp) \
+	SignalWindows/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/wicher-CreateTypeWindow.$(OBJEXT):  \
+	SignalWindows/$(am__dirstamp) \
+	SignalWindows/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/wicher-InfoTypeWindow.$(OBJEXT):  \
+	SignalWindows/$(am__dirstamp) \
+	SignalWindows/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/wicher-InfoPZWindow.$(OBJEXT):  \
+	SignalWindows/$(am__dirstamp) \
+	SignalWindows/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/wicher-InfoWZWindow.$(OBJEXT):  \
+	SignalWindows/$(am__dirstamp) \
+	SignalWindows/$(DEPDIR)/$(am__dirstamp)
+SignalWindows/wicher-InfoItemWindow.$(OBJEXT):  \
+	SignalWindows/$(am__dirstamp) \
+	SignalWindows/$(DEPDIR)/$(am__dirstamp)
 
 wicher$(EXEEXT): $(wicher_OBJECTS) $(wicher_DEPENDENCIES) $(EXTRA_wicher_DEPENDENCIES) 
 	@rm -f wicher$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(wicher_OBJECTS) $(wicher_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(wicher_LINK) $(wicher_OBJECTS) $(wicher_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f ListsManager/*.$(OBJEXT)
 	-rm -f Main/*.$(OBJEXT)
-	-rm -f PDF/*.$(OBJEXT)
 	-rm -f SignalWindows/*.$(OBJEXT)
 	-rm -f Splash/*.$(OBJEXT)
 	-rm -f Toolbar/*.$(OBJEXT)
@@ -536,24 +534,16 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wicher-Config.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wicher-Database.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wicher-DatabaseQuery.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wicher-Dialogger.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wicher-Toolkit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wicher-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wicher-sha256.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@ListsManager/$(DEPDIR)/wicher-ColumnModels.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@ListsManager/$(DEPDIR)/wicher-Constructor.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@ListsManager/$(DEPDIR)/wicher-ListsEditSignals.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@ListsManager/$(DEPDIR)/wicher-ListsSignals.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@ListsManager/$(DEPDIR)/wicher-Refresh.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@ListsManager/$(DEPDIR)/wicher-StateManager.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@Main/$(DEPDIR)/wicher-Builder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@Main/$(DEPDIR)/wicher-Main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@PDF/$(DEPDIR)/wicher-entry_gen.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@PDF/$(DEPDIR)/wicher-pz_gen.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@PDF/$(DEPDIR)/wicher-wz_gen.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Po@am__quote@
@@ -569,469 +559,357 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Po@am__quote@
 
-.cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
-
-.cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
-@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-wicher-Toolkit.o: Toolkit.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-Toolkit.o -MD -MP -MF $(DEPDIR)/wicher-Toolkit.Tpo -c -o wicher-Toolkit.o `test -f 'Toolkit.cpp' || echo '$(srcdir)/'`Toolkit.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Toolkit.Tpo $(DEPDIR)/wicher-Toolkit.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Toolkit.cpp' object='wicher-Toolkit.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-Toolkit.o `test -f 'Toolkit.cpp' || echo '$(srcdir)/'`Toolkit.cpp
-
-wicher-Toolkit.obj: Toolkit.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-Toolkit.obj -MD -MP -MF $(DEPDIR)/wicher-Toolkit.Tpo -c -o wicher-Toolkit.obj `if test -f 'Toolkit.cpp'; then $(CYGPATH_W) 'Toolkit.cpp'; else $(CYGPATH_W) '$(srcdir)/Toolkit.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Toolkit.Tpo $(DEPDIR)/wicher-Toolkit.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Toolkit.cpp' object='wicher-Toolkit.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-Toolkit.obj `if test -f 'Toolkit.cpp'; then $(CYGPATH_W) 'Toolkit.cpp'; else $(CYGPATH_W) '$(srcdir)/Toolkit.cpp'; fi`
-
-wicher-Config.o: Config.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-Config.o -MD -MP -MF $(DEPDIR)/wicher-Config.Tpo -c -o wicher-Config.o `test -f 'Config.cpp' || echo '$(srcdir)/'`Config.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Config.Tpo $(DEPDIR)/wicher-Config.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Config.cpp' object='wicher-Config.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-Config.o `test -f 'Config.cpp' || echo '$(srcdir)/'`Config.cpp
-
-wicher-Config.obj: Config.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-Config.obj -MD -MP -MF $(DEPDIR)/wicher-Config.Tpo -c -o wicher-Config.obj `if test -f 'Config.cpp'; then $(CYGPATH_W) 'Config.cpp'; else $(CYGPATH_W) '$(srcdir)/Config.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Config.Tpo $(DEPDIR)/wicher-Config.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Config.cpp' object='wicher-Config.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-Config.obj `if test -f 'Config.cpp'; then $(CYGPATH_W) 'Config.cpp'; else $(CYGPATH_W) '$(srcdir)/Config.cpp'; fi`
-
-wicher-Dialogger.o: Dialogger.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-Dialogger.o -MD -MP -MF $(DEPDIR)/wicher-Dialogger.Tpo -c -o wicher-Dialogger.o `test -f 'Dialogger.cpp' || echo '$(srcdir)/'`Dialogger.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Dialogger.Tpo $(DEPDIR)/wicher-Dialogger.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Dialogger.cpp' object='wicher-Dialogger.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-Dialogger.o `test -f 'Dialogger.cpp' || echo '$(srcdir)/'`Dialogger.cpp
-
-wicher-Dialogger.obj: Dialogger.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-Dialogger.obj -MD -MP -MF $(DEPDIR)/wicher-Dialogger.Tpo -c -o wicher-Dialogger.obj `if test -f 'Dialogger.cpp'; then $(CYGPATH_W) 'Dialogger.cpp'; else $(CYGPATH_W) '$(srcdir)/Dialogger.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Dialogger.Tpo $(DEPDIR)/wicher-Dialogger.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Dialogger.cpp' object='wicher-Dialogger.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-Dialogger.obj `if test -f 'Dialogger.cpp'; then $(CYGPATH_W) 'Dialogger.cpp'; else $(CYGPATH_W) '$(srcdir)/Dialogger.cpp'; fi`
-
-Splash/wicher-RunServer.o: Splash/RunServer.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Splash/wicher-RunServer.o -MD -MP -MF Splash/$(DEPDIR)/wicher-RunServer.Tpo -c -o Splash/wicher-RunServer.o `test -f 'Splash/RunServer.cpp' || echo '$(srcdir)/'`Splash/RunServer.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Splash/$(DEPDIR)/wicher-RunServer.Tpo Splash/$(DEPDIR)/wicher-RunServer.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Splash/RunServer.cpp' object='Splash/wicher-RunServer.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Splash/wicher-RunServer.o `test -f 'Splash/RunServer.cpp' || echo '$(srcdir)/'`Splash/RunServer.cpp
-
-Splash/wicher-RunServer.obj: Splash/RunServer.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Splash/wicher-RunServer.obj -MD -MP -MF Splash/$(DEPDIR)/wicher-RunServer.Tpo -c -o Splash/wicher-RunServer.obj `if test -f 'Splash/RunServer.cpp'; then $(CYGPATH_W) 'Splash/RunServer.cpp'; else $(CYGPATH_W) '$(srcdir)/Splash/RunServer.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Splash/$(DEPDIR)/wicher-RunServer.Tpo Splash/$(DEPDIR)/wicher-RunServer.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Splash/RunServer.cpp' object='Splash/wicher-RunServer.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Splash/wicher-RunServer.obj `if test -f 'Splash/RunServer.cpp'; then $(CYGPATH_W) 'Splash/RunServer.cpp'; else $(CYGPATH_W) '$(srcdir)/Splash/RunServer.cpp'; fi`
-
-Splash/wicher-Splash.o: Splash/Splash.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Splash/wicher-Splash.o -MD -MP -MF Splash/$(DEPDIR)/wicher-Splash.Tpo -c -o Splash/wicher-Splash.o `test -f 'Splash/Splash.cpp' || echo '$(srcdir)/'`Splash/Splash.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Splash/$(DEPDIR)/wicher-Splash.Tpo Splash/$(DEPDIR)/wicher-Splash.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Splash/Splash.cpp' object='Splash/wicher-Splash.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Splash/wicher-Splash.o `test -f 'Splash/Splash.cpp' || echo '$(srcdir)/'`Splash/Splash.cpp
-
-Splash/wicher-Splash.obj: Splash/Splash.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Splash/wicher-Splash.obj -MD -MP -MF Splash/$(DEPDIR)/wicher-Splash.Tpo -c -o Splash/wicher-Splash.obj `if test -f 'Splash/Splash.cpp'; then $(CYGPATH_W) 'Splash/Splash.cpp'; else $(CYGPATH_W) '$(srcdir)/Splash/Splash.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Splash/$(DEPDIR)/wicher-Splash.Tpo Splash/$(DEPDIR)/wicher-Splash.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Splash/Splash.cpp' object='Splash/wicher-Splash.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Splash/wicher-Splash.obj `if test -f 'Splash/Splash.cpp'; then $(CYGPATH_W) 'Splash/Splash.cpp'; else $(CYGPATH_W) '$(srcdir)/Splash/Splash.cpp'; fi`
-
-wicher-Database.o: Database.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-Database.o -MD -MP -MF $(DEPDIR)/wicher-Database.Tpo -c -o wicher-Database.o `test -f 'Database.cpp' || echo '$(srcdir)/'`Database.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Database.Tpo $(DEPDIR)/wicher-Database.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Database.cpp' object='wicher-Database.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-Database.o `test -f 'Database.cpp' || echo '$(srcdir)/'`Database.cpp
-
-wicher-Database.obj: Database.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-Database.obj -MD -MP -MF $(DEPDIR)/wicher-Database.Tpo -c -o wicher-Database.obj `if test -f 'Database.cpp'; then $(CYGPATH_W) 'Database.cpp'; else $(CYGPATH_W) '$(srcdir)/Database.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Database.Tpo $(DEPDIR)/wicher-Database.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Database.cpp' object='wicher-Database.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-Database.obj `if test -f 'Database.cpp'; then $(CYGPATH_W) 'Database.cpp'; else $(CYGPATH_W) '$(srcdir)/Database.cpp'; fi`
-
-wicher-DatabaseQuery.o: DatabaseQuery.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-DatabaseQuery.o -MD -MP -MF $(DEPDIR)/wicher-DatabaseQuery.Tpo -c -o wicher-DatabaseQuery.o `test -f 'DatabaseQuery.cpp' || echo '$(srcdir)/'`DatabaseQuery.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-DatabaseQuery.Tpo $(DEPDIR)/wicher-DatabaseQuery.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='DatabaseQuery.cpp' object='wicher-DatabaseQuery.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-DatabaseQuery.o `test -f 'DatabaseQuery.cpp' || echo '$(srcdir)/'`DatabaseQuery.cpp
-
-wicher-DatabaseQuery.obj: DatabaseQuery.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-DatabaseQuery.obj -MD -MP -MF $(DEPDIR)/wicher-DatabaseQuery.Tpo -c -o wicher-DatabaseQuery.obj `if test -f 'DatabaseQuery.cpp'; then $(CYGPATH_W) 'DatabaseQuery.cpp'; else $(CYGPATH_W) '$(srcdir)/DatabaseQuery.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-DatabaseQuery.Tpo $(DEPDIR)/wicher-DatabaseQuery.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='DatabaseQuery.cpp' object='wicher-DatabaseQuery.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-DatabaseQuery.obj `if test -f 'DatabaseQuery.cpp'; then $(CYGPATH_W) 'DatabaseQuery.cpp'; else $(CYGPATH_W) '$(srcdir)/DatabaseQuery.cpp'; fi`
-
-wicher-sha256.o: sha256.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-sha256.o -MD -MP -MF $(DEPDIR)/wicher-sha256.Tpo -c -o wicher-sha256.o `test -f 'sha256.cpp' || echo '$(srcdir)/'`sha256.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-sha256.Tpo $(DEPDIR)/wicher-sha256.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sha256.cpp' object='wicher-sha256.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-sha256.o `test -f 'sha256.cpp' || echo '$(srcdir)/'`sha256.cpp
-
-wicher-sha256.obj: sha256.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-sha256.obj -MD -MP -MF $(DEPDIR)/wicher-sha256.Tpo -c -o wicher-sha256.obj `if test -f 'sha256.cpp'; then $(CYGPATH_W) 'sha256.cpp'; else $(CYGPATH_W) '$(srcdir)/sha256.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-sha256.Tpo $(DEPDIR)/wicher-sha256.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sha256.cpp' object='wicher-sha256.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-sha256.obj `if test -f 'sha256.cpp'; then $(CYGPATH_W) 'sha256.cpp'; else $(CYGPATH_W) '$(srcdir)/sha256.cpp'; fi`
-
-Main/wicher-Builder.o: Main/Builder.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Main/wicher-Builder.o -MD -MP -MF Main/$(DEPDIR)/wicher-Builder.Tpo -c -o Main/wicher-Builder.o `test -f 'Main/Builder.cpp' || echo '$(srcdir)/'`Main/Builder.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Main/$(DEPDIR)/wicher-Builder.Tpo Main/$(DEPDIR)/wicher-Builder.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Main/Builder.cpp' object='Main/wicher-Builder.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Main/wicher-Builder.o `test -f 'Main/Builder.cpp' || echo '$(srcdir)/'`Main/Builder.cpp
-
-Main/wicher-Builder.obj: Main/Builder.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Main/wicher-Builder.obj -MD -MP -MF Main/$(DEPDIR)/wicher-Builder.Tpo -c -o Main/wicher-Builder.obj `if test -f 'Main/Builder.cpp'; then $(CYGPATH_W) 'Main/Builder.cpp'; else $(CYGPATH_W) '$(srcdir)/Main/Builder.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Main/$(DEPDIR)/wicher-Builder.Tpo Main/$(DEPDIR)/wicher-Builder.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Main/Builder.cpp' object='Main/wicher-Builder.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Main/wicher-Builder.obj `if test -f 'Main/Builder.cpp'; then $(CYGPATH_W) 'Main/Builder.cpp'; else $(CYGPATH_W) '$(srcdir)/Main/Builder.cpp'; fi`
-
-Toolbar/wicher-ToolbarOptions.o: Toolbar/ToolbarOptions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Toolbar/wicher-ToolbarOptions.o -MD -MP -MF Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Tpo -c -o Toolbar/wicher-ToolbarOptions.o `test -f 'Toolbar/ToolbarOptions.cpp' || echo '$(srcdir)/'`Toolbar/ToolbarOptions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Tpo Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Toolbar/ToolbarOptions.cpp' object='Toolbar/wicher-ToolbarOptions.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Toolbar/wicher-ToolbarOptions.o `test -f 'Toolbar/ToolbarOptions.cpp' || echo '$(srcdir)/'`Toolbar/ToolbarOptions.cpp
-
-Toolbar/wicher-ToolbarOptions.obj: Toolbar/ToolbarOptions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Toolbar/wicher-ToolbarOptions.obj -MD -MP -MF Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Tpo -c -o Toolbar/wicher-ToolbarOptions.obj `if test -f 'Toolbar/ToolbarOptions.cpp'; then $(CYGPATH_W) 'Toolbar/ToolbarOptions.cpp'; else $(CYGPATH_W) '$(srcdir)/Toolbar/ToolbarOptions.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Tpo Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Toolbar/ToolbarOptions.cpp' object='Toolbar/wicher-ToolbarOptions.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Toolbar/wicher-ToolbarOptions.obj `if test -f 'Toolbar/ToolbarOptions.cpp'; then $(CYGPATH_W) 'Toolbar/ToolbarOptions.cpp'; else $(CYGPATH_W) '$(srcdir)/Toolbar/ToolbarOptions.cpp'; fi`
-
-Toolbar/wicher-ToolbarInfo.o: Toolbar/ToolbarInfo.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Toolbar/wicher-ToolbarInfo.o -MD -MP -MF Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Tpo -c -o Toolbar/wicher-ToolbarInfo.o `test -f 'Toolbar/ToolbarInfo.cpp' || echo '$(srcdir)/'`Toolbar/ToolbarInfo.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Tpo Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Toolbar/ToolbarInfo.cpp' object='Toolbar/wicher-ToolbarInfo.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Toolbar/wicher-ToolbarInfo.o `test -f 'Toolbar/ToolbarInfo.cpp' || echo '$(srcdir)/'`Toolbar/ToolbarInfo.cpp
-
-Toolbar/wicher-ToolbarInfo.obj: Toolbar/ToolbarInfo.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Toolbar/wicher-ToolbarInfo.obj -MD -MP -MF Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Tpo -c -o Toolbar/wicher-ToolbarInfo.obj `if test -f 'Toolbar/ToolbarInfo.cpp'; then $(CYGPATH_W) 'Toolbar/ToolbarInfo.cpp'; else $(CYGPATH_W) '$(srcdir)/Toolbar/ToolbarInfo.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Tpo Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Toolbar/ToolbarInfo.cpp' object='Toolbar/wicher-ToolbarInfo.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Toolbar/wicher-ToolbarInfo.obj `if test -f 'Toolbar/ToolbarInfo.cpp'; then $(CYGPATH_W) 'Toolbar/ToolbarInfo.cpp'; else $(CYGPATH_W) '$(srcdir)/Toolbar/ToolbarInfo.cpp'; fi`
-
-SignalWindows/wicher-CreateTypeWindow.o: SignalWindows/CreateTypeWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-CreateTypeWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Tpo -c -o SignalWindows/wicher-CreateTypeWindow.o `test -f 'SignalWindows/CreateTypeWindow.cpp' || echo '$(srcdir)/'`SignalWindows/CreateTypeWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/CreateTypeWindow.cpp' object='SignalWindows/wicher-CreateTypeWindow.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-CreateTypeWindow.o `test -f 'SignalWindows/CreateTypeWindow.cpp' || echo '$(srcdir)/'`SignalWindows/CreateTypeWindow.cpp
-
-SignalWindows/wicher-CreateTypeWindow.obj: SignalWindows/CreateTypeWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-CreateTypeWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Tpo -c -o SignalWindows/wicher-CreateTypeWindow.obj `if test -f 'SignalWindows/CreateTypeWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/CreateTypeWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateTypeWindow.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/CreateTypeWindow.cpp' object='SignalWindows/wicher-CreateTypeWindow.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-CreateTypeWindow.obj `if test -f 'SignalWindows/CreateTypeWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/CreateTypeWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateTypeWindow.cpp'; fi`
-
-SignalWindows/wicher-CreateItemWindow.o: SignalWindows/CreateItemWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-CreateItemWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Tpo -c -o SignalWindows/wicher-CreateItemWindow.o `test -f 'SignalWindows/CreateItemWindow.cpp' || echo '$(srcdir)/'`SignalWindows/CreateItemWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/CreateItemWindow.cpp' object='SignalWindows/wicher-CreateItemWindow.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-CreateItemWindow.o `test -f 'SignalWindows/CreateItemWindow.cpp' || echo '$(srcdir)/'`SignalWindows/CreateItemWindow.cpp
-
-SignalWindows/wicher-CreateItemWindow.obj: SignalWindows/CreateItemWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-CreateItemWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Tpo -c -o SignalWindows/wicher-CreateItemWindow.obj `if test -f 'SignalWindows/CreateItemWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/CreateItemWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateItemWindow.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/CreateItemWindow.cpp' object='SignalWindows/wicher-CreateItemWindow.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-CreateItemWindow.obj `if test -f 'SignalWindows/CreateItemWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/CreateItemWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateItemWindow.cpp'; fi`
-
-SignalWindows/wicher-CreateWZWindow.o: SignalWindows/CreateWZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-CreateWZWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Tpo -c -o SignalWindows/wicher-CreateWZWindow.o `test -f 'SignalWindows/CreateWZWindow.cpp' || echo '$(srcdir)/'`SignalWindows/CreateWZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/CreateWZWindow.cpp' object='SignalWindows/wicher-CreateWZWindow.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-CreateWZWindow.o `test -f 'SignalWindows/CreateWZWindow.cpp' || echo '$(srcdir)/'`SignalWindows/CreateWZWindow.cpp
-
-SignalWindows/wicher-CreateWZWindow.obj: SignalWindows/CreateWZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-CreateWZWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Tpo -c -o SignalWindows/wicher-CreateWZWindow.obj `if test -f 'SignalWindows/CreateWZWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/CreateWZWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateWZWindow.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/CreateWZWindow.cpp' object='SignalWindows/wicher-CreateWZWindow.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-CreateWZWindow.obj `if test -f 'SignalWindows/CreateWZWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/CreateWZWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateWZWindow.cpp'; fi`
-
-SignalWindows/wicher-CreatePZWindow.o: SignalWindows/CreatePZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-CreatePZWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Tpo -c -o SignalWindows/wicher-CreatePZWindow.o `test -f 'SignalWindows/CreatePZWindow.cpp' || echo '$(srcdir)/'`SignalWindows/CreatePZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/CreatePZWindow.cpp' object='SignalWindows/wicher-CreatePZWindow.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-CreatePZWindow.o `test -f 'SignalWindows/CreatePZWindow.cpp' || echo '$(srcdir)/'`SignalWindows/CreatePZWindow.cpp
-
-SignalWindows/wicher-CreatePZWindow.obj: SignalWindows/CreatePZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-CreatePZWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Tpo -c -o SignalWindows/wicher-CreatePZWindow.obj `if test -f 'SignalWindows/CreatePZWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/CreatePZWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreatePZWindow.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/CreatePZWindow.cpp' object='SignalWindows/wicher-CreatePZWindow.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-CreatePZWindow.obj `if test -f 'SignalWindows/CreatePZWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/CreatePZWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreatePZWindow.cpp'; fi`
-
-SignalWindows/wicher-InfoTypeWindow.o: SignalWindows/InfoTypeWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-InfoTypeWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Tpo -c -o SignalWindows/wicher-InfoTypeWindow.o `test -f 'SignalWindows/InfoTypeWindow.cpp' || echo '$(srcdir)/'`SignalWindows/InfoTypeWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/InfoTypeWindow.cpp' object='SignalWindows/wicher-InfoTypeWindow.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-InfoTypeWindow.o `test -f 'SignalWindows/InfoTypeWindow.cpp' || echo '$(srcdir)/'`SignalWindows/InfoTypeWindow.cpp
-
-SignalWindows/wicher-InfoTypeWindow.obj: SignalWindows/InfoTypeWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-InfoTypeWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Tpo -c -o SignalWindows/wicher-InfoTypeWindow.obj `if test -f 'SignalWindows/InfoTypeWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/InfoTypeWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoTypeWindow.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/InfoTypeWindow.cpp' object='SignalWindows/wicher-InfoTypeWindow.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-InfoTypeWindow.obj `if test -f 'SignalWindows/InfoTypeWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/InfoTypeWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoTypeWindow.cpp'; fi`
-
-SignalWindows/wicher-AddItemsWindow.o: SignalWindows/AddItemsWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-AddItemsWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Tpo -c -o SignalWindows/wicher-AddItemsWindow.o `test -f 'SignalWindows/AddItemsWindow.cpp' || echo '$(srcdir)/'`SignalWindows/AddItemsWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Tpo SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/AddItemsWindow.cpp' object='SignalWindows/wicher-AddItemsWindow.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-AddItemsWindow.o `test -f 'SignalWindows/AddItemsWindow.cpp' || echo '$(srcdir)/'`SignalWindows/AddItemsWindow.cpp
-
-SignalWindows/wicher-AddItemsWindow.obj: SignalWindows/AddItemsWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-AddItemsWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Tpo -c -o SignalWindows/wicher-AddItemsWindow.obj `if test -f 'SignalWindows/AddItemsWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/AddItemsWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/AddItemsWindow.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Tpo SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/AddItemsWindow.cpp' object='SignalWindows/wicher-AddItemsWindow.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-AddItemsWindow.obj `if test -f 'SignalWindows/AddItemsWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/AddItemsWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/AddItemsWindow.cpp'; fi`
-
-SignalWindows/wicher-InfoItemWindow.o: SignalWindows/InfoItemWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-InfoItemWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Tpo -c -o SignalWindows/wicher-InfoItemWindow.o `test -f 'SignalWindows/InfoItemWindow.cpp' || echo '$(srcdir)/'`SignalWindows/InfoItemWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/InfoItemWindow.cpp' object='SignalWindows/wicher-InfoItemWindow.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-InfoItemWindow.o `test -f 'SignalWindows/InfoItemWindow.cpp' || echo '$(srcdir)/'`SignalWindows/InfoItemWindow.cpp
-
-SignalWindows/wicher-InfoItemWindow.obj: SignalWindows/InfoItemWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-InfoItemWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Tpo -c -o SignalWindows/wicher-InfoItemWindow.obj `if test -f 'SignalWindows/InfoItemWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/InfoItemWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoItemWindow.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/InfoItemWindow.cpp' object='SignalWindows/wicher-InfoItemWindow.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-InfoItemWindow.obj `if test -f 'SignalWindows/InfoItemWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/InfoItemWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoItemWindow.cpp'; fi`
-
-SignalWindows/wicher-InfoWZWindow.o: SignalWindows/InfoWZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-InfoWZWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Tpo -c -o SignalWindows/wicher-InfoWZWindow.o `test -f 'SignalWindows/InfoWZWindow.cpp' || echo '$(srcdir)/'`SignalWindows/InfoWZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/InfoWZWindow.cpp' object='SignalWindows/wicher-InfoWZWindow.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-InfoWZWindow.o `test -f 'SignalWindows/InfoWZWindow.cpp' || echo '$(srcdir)/'`SignalWindows/InfoWZWindow.cpp
-
-SignalWindows/wicher-InfoWZWindow.obj: SignalWindows/InfoWZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-InfoWZWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Tpo -c -o SignalWindows/wicher-InfoWZWindow.obj `if test -f 'SignalWindows/InfoWZWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/InfoWZWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoWZWindow.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/InfoWZWindow.cpp' object='SignalWindows/wicher-InfoWZWindow.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-InfoWZWindow.obj `if test -f 'SignalWindows/InfoWZWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/InfoWZWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoWZWindow.cpp'; fi`
-
-SignalWindows/wicher-InfoPZWindow.o: SignalWindows/InfoPZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-InfoPZWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Tpo -c -o SignalWindows/wicher-InfoPZWindow.o `test -f 'SignalWindows/InfoPZWindow.cpp' || echo '$(srcdir)/'`SignalWindows/InfoPZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/InfoPZWindow.cpp' object='SignalWindows/wicher-InfoPZWindow.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-InfoPZWindow.o `test -f 'SignalWindows/InfoPZWindow.cpp' || echo '$(srcdir)/'`SignalWindows/InfoPZWindow.cpp
-
-SignalWindows/wicher-InfoPZWindow.obj: SignalWindows/InfoPZWindow.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-InfoPZWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Tpo -c -o SignalWindows/wicher-InfoPZWindow.obj `if test -f 'SignalWindows/InfoPZWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/InfoPZWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoPZWindow.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/InfoPZWindow.cpp' object='SignalWindows/wicher-InfoPZWindow.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-InfoPZWindow.obj `if test -f 'SignalWindows/InfoPZWindow.cpp'; then $(CYGPATH_W) 'SignalWindows/InfoPZWindow.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoPZWindow.cpp'; fi`
-
-SignalWindows/wicher-SignalWindows.o: SignalWindows/SignalWindows.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-SignalWindows.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-SignalWindows.Tpo -c -o SignalWindows/wicher-SignalWindows.o `test -f 'SignalWindows/SignalWindows.cpp' || echo '$(srcdir)/'`SignalWindows/SignalWindows.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-SignalWindows.Tpo SignalWindows/$(DEPDIR)/wicher-SignalWindows.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/SignalWindows.cpp' object='SignalWindows/wicher-SignalWindows.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-SignalWindows.o `test -f 'SignalWindows/SignalWindows.cpp' || echo '$(srcdir)/'`SignalWindows/SignalWindows.cpp
-
-SignalWindows/wicher-SignalWindows.obj: SignalWindows/SignalWindows.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SignalWindows/wicher-SignalWindows.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-SignalWindows.Tpo -c -o SignalWindows/wicher-SignalWindows.obj `if test -f 'SignalWindows/SignalWindows.cpp'; then $(CYGPATH_W) 'SignalWindows/SignalWindows.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/SignalWindows.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-SignalWindows.Tpo SignalWindows/$(DEPDIR)/wicher-SignalWindows.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='SignalWindows/SignalWindows.cpp' object='SignalWindows/wicher-SignalWindows.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SignalWindows/wicher-SignalWindows.obj `if test -f 'SignalWindows/SignalWindows.cpp'; then $(CYGPATH_W) 'SignalWindows/SignalWindows.cpp'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/SignalWindows.cpp'; fi`
-
-ListsManager/wicher-StateManager.o: ListsManager/StateManager.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-StateManager.o -MD -MP -MF ListsManager/$(DEPDIR)/wicher-StateManager.Tpo -c -o ListsManager/wicher-StateManager.o `test -f 'ListsManager/StateManager.cpp' || echo '$(srcdir)/'`ListsManager/StateManager.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-StateManager.Tpo ListsManager/$(DEPDIR)/wicher-StateManager.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/StateManager.cpp' object='ListsManager/wicher-StateManager.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-StateManager.o `test -f 'ListsManager/StateManager.cpp' || echo '$(srcdir)/'`ListsManager/StateManager.cpp
-
-ListsManager/wicher-StateManager.obj: ListsManager/StateManager.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-StateManager.obj -MD -MP -MF ListsManager/$(DEPDIR)/wicher-StateManager.Tpo -c -o ListsManager/wicher-StateManager.obj `if test -f 'ListsManager/StateManager.cpp'; then $(CYGPATH_W) 'ListsManager/StateManager.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/StateManager.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-StateManager.Tpo ListsManager/$(DEPDIR)/wicher-StateManager.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/StateManager.cpp' object='ListsManager/wicher-StateManager.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-StateManager.obj `if test -f 'ListsManager/StateManager.cpp'; then $(CYGPATH_W) 'ListsManager/StateManager.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/StateManager.cpp'; fi`
-
-ListsManager/wicher-Refresh.o: ListsManager/Refresh.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-Refresh.o -MD -MP -MF ListsManager/$(DEPDIR)/wicher-Refresh.Tpo -c -o ListsManager/wicher-Refresh.o `test -f 'ListsManager/Refresh.cpp' || echo '$(srcdir)/'`ListsManager/Refresh.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-Refresh.Tpo ListsManager/$(DEPDIR)/wicher-Refresh.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/Refresh.cpp' object='ListsManager/wicher-Refresh.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-Refresh.o `test -f 'ListsManager/Refresh.cpp' || echo '$(srcdir)/'`ListsManager/Refresh.cpp
-
-ListsManager/wicher-Refresh.obj: ListsManager/Refresh.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-Refresh.obj -MD -MP -MF ListsManager/$(DEPDIR)/wicher-Refresh.Tpo -c -o ListsManager/wicher-Refresh.obj `if test -f 'ListsManager/Refresh.cpp'; then $(CYGPATH_W) 'ListsManager/Refresh.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/Refresh.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-Refresh.Tpo ListsManager/$(DEPDIR)/wicher-Refresh.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/Refresh.cpp' object='ListsManager/wicher-Refresh.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-Refresh.obj `if test -f 'ListsManager/Refresh.cpp'; then $(CYGPATH_W) 'ListsManager/Refresh.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/Refresh.cpp'; fi`
-
-ListsManager/wicher-ColumnModels.o: ListsManager/ColumnModels.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-ColumnModels.o -MD -MP -MF ListsManager/$(DEPDIR)/wicher-ColumnModels.Tpo -c -o ListsManager/wicher-ColumnModels.o `test -f 'ListsManager/ColumnModels.cpp' || echo '$(srcdir)/'`ListsManager/ColumnModels.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-ColumnModels.Tpo ListsManager/$(DEPDIR)/wicher-ColumnModels.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/ColumnModels.cpp' object='ListsManager/wicher-ColumnModels.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-ColumnModels.o `test -f 'ListsManager/ColumnModels.cpp' || echo '$(srcdir)/'`ListsManager/ColumnModels.cpp
-
-ListsManager/wicher-ColumnModels.obj: ListsManager/ColumnModels.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-ColumnModels.obj -MD -MP -MF ListsManager/$(DEPDIR)/wicher-ColumnModels.Tpo -c -o ListsManager/wicher-ColumnModels.obj `if test -f 'ListsManager/ColumnModels.cpp'; then $(CYGPATH_W) 'ListsManager/ColumnModels.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/ColumnModels.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-ColumnModels.Tpo ListsManager/$(DEPDIR)/wicher-ColumnModels.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/ColumnModels.cpp' object='ListsManager/wicher-ColumnModels.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-ColumnModels.obj `if test -f 'ListsManager/ColumnModels.cpp'; then $(CYGPATH_W) 'ListsManager/ColumnModels.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/ColumnModels.cpp'; fi`
-
-ListsManager/wicher-Constructor.o: ListsManager/Constructor.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-Constructor.o -MD -MP -MF ListsManager/$(DEPDIR)/wicher-Constructor.Tpo -c -o ListsManager/wicher-Constructor.o `test -f 'ListsManager/Constructor.cpp' || echo '$(srcdir)/'`ListsManager/Constructor.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-Constructor.Tpo ListsManager/$(DEPDIR)/wicher-Constructor.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/Constructor.cpp' object='ListsManager/wicher-Constructor.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-Constructor.o `test -f 'ListsManager/Constructor.cpp' || echo '$(srcdir)/'`ListsManager/Constructor.cpp
-
-ListsManager/wicher-Constructor.obj: ListsManager/Constructor.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-Constructor.obj -MD -MP -MF ListsManager/$(DEPDIR)/wicher-Constructor.Tpo -c -o ListsManager/wicher-Constructor.obj `if test -f 'ListsManager/Constructor.cpp'; then $(CYGPATH_W) 'ListsManager/Constructor.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/Constructor.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-Constructor.Tpo ListsManager/$(DEPDIR)/wicher-Constructor.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/Constructor.cpp' object='ListsManager/wicher-Constructor.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-Constructor.obj `if test -f 'ListsManager/Constructor.cpp'; then $(CYGPATH_W) 'ListsManager/Constructor.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/Constructor.cpp'; fi`
-
-ListsManager/wicher-ListsSignals.o: ListsManager/ListsSignals.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-ListsSignals.o -MD -MP -MF ListsManager/$(DEPDIR)/wicher-ListsSignals.Tpo -c -o ListsManager/wicher-ListsSignals.o `test -f 'ListsManager/ListsSignals.cpp' || echo '$(srcdir)/'`ListsManager/ListsSignals.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-ListsSignals.Tpo ListsManager/$(DEPDIR)/wicher-ListsSignals.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/ListsSignals.cpp' object='ListsManager/wicher-ListsSignals.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-ListsSignals.o `test -f 'ListsManager/ListsSignals.cpp' || echo '$(srcdir)/'`ListsManager/ListsSignals.cpp
-
-ListsManager/wicher-ListsSignals.obj: ListsManager/ListsSignals.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-ListsSignals.obj -MD -MP -MF ListsManager/$(DEPDIR)/wicher-ListsSignals.Tpo -c -o ListsManager/wicher-ListsSignals.obj `if test -f 'ListsManager/ListsSignals.cpp'; then $(CYGPATH_W) 'ListsManager/ListsSignals.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/ListsSignals.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-ListsSignals.Tpo ListsManager/$(DEPDIR)/wicher-ListsSignals.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/ListsSignals.cpp' object='ListsManager/wicher-ListsSignals.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-ListsSignals.obj `if test -f 'ListsManager/ListsSignals.cpp'; then $(CYGPATH_W) 'ListsManager/ListsSignals.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/ListsSignals.cpp'; fi`
-
-ListsManager/wicher-ListsEditSignals.o: ListsManager/ListsEditSignals.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-ListsEditSignals.o -MD -MP -MF ListsManager/$(DEPDIR)/wicher-ListsEditSignals.Tpo -c -o ListsManager/wicher-ListsEditSignals.o `test -f 'ListsManager/ListsEditSignals.cpp' || echo '$(srcdir)/'`ListsManager/ListsEditSignals.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-ListsEditSignals.Tpo ListsManager/$(DEPDIR)/wicher-ListsEditSignals.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/ListsEditSignals.cpp' object='ListsManager/wicher-ListsEditSignals.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-ListsEditSignals.o `test -f 'ListsManager/ListsEditSignals.cpp' || echo '$(srcdir)/'`ListsManager/ListsEditSignals.cpp
-
-ListsManager/wicher-ListsEditSignals.obj: ListsManager/ListsEditSignals.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ListsManager/wicher-ListsEditSignals.obj -MD -MP -MF ListsManager/$(DEPDIR)/wicher-ListsEditSignals.Tpo -c -o ListsManager/wicher-ListsEditSignals.obj `if test -f 'ListsManager/ListsEditSignals.cpp'; then $(CYGPATH_W) 'ListsManager/ListsEditSignals.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/ListsEditSignals.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-ListsEditSignals.Tpo ListsManager/$(DEPDIR)/wicher-ListsEditSignals.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ListsManager/ListsEditSignals.cpp' object='ListsManager/wicher-ListsEditSignals.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ListsManager/wicher-ListsEditSignals.obj `if test -f 'ListsManager/ListsEditSignals.cpp'; then $(CYGPATH_W) 'ListsManager/ListsEditSignals.cpp'; else $(CYGPATH_W) '$(srcdir)/ListsManager/ListsEditSignals.cpp'; fi`
-
-PDF/wicher-entry_gen.o: PDF/entry_gen.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT PDF/wicher-entry_gen.o -MD -MP -MF PDF/$(DEPDIR)/wicher-entry_gen.Tpo -c -o PDF/wicher-entry_gen.o `test -f 'PDF/entry_gen.cpp' || echo '$(srcdir)/'`PDF/entry_gen.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) PDF/$(DEPDIR)/wicher-entry_gen.Tpo PDF/$(DEPDIR)/wicher-entry_gen.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='PDF/entry_gen.cpp' object='PDF/wicher-entry_gen.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o PDF/wicher-entry_gen.o `test -f 'PDF/entry_gen.cpp' || echo '$(srcdir)/'`PDF/entry_gen.cpp
-
-PDF/wicher-entry_gen.obj: PDF/entry_gen.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT PDF/wicher-entry_gen.obj -MD -MP -MF PDF/$(DEPDIR)/wicher-entry_gen.Tpo -c -o PDF/wicher-entry_gen.obj `if test -f 'PDF/entry_gen.cpp'; then $(CYGPATH_W) 'PDF/entry_gen.cpp'; else $(CYGPATH_W) '$(srcdir)/PDF/entry_gen.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) PDF/$(DEPDIR)/wicher-entry_gen.Tpo PDF/$(DEPDIR)/wicher-entry_gen.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='PDF/entry_gen.cpp' object='PDF/wicher-entry_gen.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o PDF/wicher-entry_gen.obj `if test -f 'PDF/entry_gen.cpp'; then $(CYGPATH_W) 'PDF/entry_gen.cpp'; else $(CYGPATH_W) '$(srcdir)/PDF/entry_gen.cpp'; fi`
-
-PDF/wicher-wz_gen.o: PDF/wz_gen.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT PDF/wicher-wz_gen.o -MD -MP -MF PDF/$(DEPDIR)/wicher-wz_gen.Tpo -c -o PDF/wicher-wz_gen.o `test -f 'PDF/wz_gen.cpp' || echo '$(srcdir)/'`PDF/wz_gen.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) PDF/$(DEPDIR)/wicher-wz_gen.Tpo PDF/$(DEPDIR)/wicher-wz_gen.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='PDF/wz_gen.cpp' object='PDF/wicher-wz_gen.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o PDF/wicher-wz_gen.o `test -f 'PDF/wz_gen.cpp' || echo '$(srcdir)/'`PDF/wz_gen.cpp
-
-PDF/wicher-wz_gen.obj: PDF/wz_gen.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT PDF/wicher-wz_gen.obj -MD -MP -MF PDF/$(DEPDIR)/wicher-wz_gen.Tpo -c -o PDF/wicher-wz_gen.obj `if test -f 'PDF/wz_gen.cpp'; then $(CYGPATH_W) 'PDF/wz_gen.cpp'; else $(CYGPATH_W) '$(srcdir)/PDF/wz_gen.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) PDF/$(DEPDIR)/wicher-wz_gen.Tpo PDF/$(DEPDIR)/wicher-wz_gen.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='PDF/wz_gen.cpp' object='PDF/wicher-wz_gen.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o PDF/wicher-wz_gen.obj `if test -f 'PDF/wz_gen.cpp'; then $(CYGPATH_W) 'PDF/wz_gen.cpp'; else $(CYGPATH_W) '$(srcdir)/PDF/wz_gen.cpp'; fi`
-
-PDF/wicher-pz_gen.o: PDF/pz_gen.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT PDF/wicher-pz_gen.o -MD -MP -MF PDF/$(DEPDIR)/wicher-pz_gen.Tpo -c -o PDF/wicher-pz_gen.o `test -f 'PDF/pz_gen.cpp' || echo '$(srcdir)/'`PDF/pz_gen.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) PDF/$(DEPDIR)/wicher-pz_gen.Tpo PDF/$(DEPDIR)/wicher-pz_gen.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='PDF/pz_gen.cpp' object='PDF/wicher-pz_gen.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o PDF/wicher-pz_gen.o `test -f 'PDF/pz_gen.cpp' || echo '$(srcdir)/'`PDF/pz_gen.cpp
-
-PDF/wicher-pz_gen.obj: PDF/pz_gen.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT PDF/wicher-pz_gen.obj -MD -MP -MF PDF/$(DEPDIR)/wicher-pz_gen.Tpo -c -o PDF/wicher-pz_gen.obj `if test -f 'PDF/pz_gen.cpp'; then $(CYGPATH_W) 'PDF/pz_gen.cpp'; else $(CYGPATH_W) '$(srcdir)/PDF/pz_gen.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) PDF/$(DEPDIR)/wicher-pz_gen.Tpo PDF/$(DEPDIR)/wicher-pz_gen.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='PDF/pz_gen.cpp' object='PDF/wicher-pz_gen.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o PDF/wicher-pz_gen.obj `if test -f 'PDF/pz_gen.cpp'; then $(CYGPATH_W) 'PDF/pz_gen.cpp'; else $(CYGPATH_W) '$(srcdir)/PDF/pz_gen.cpp'; fi`
-
-Main/wicher-Main.o: Main/Main.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Main/wicher-Main.o -MD -MP -MF Main/$(DEPDIR)/wicher-Main.Tpo -c -o Main/wicher-Main.o `test -f 'Main/Main.cpp' || echo '$(srcdir)/'`Main/Main.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Main/$(DEPDIR)/wicher-Main.Tpo Main/$(DEPDIR)/wicher-Main.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Main/Main.cpp' object='Main/wicher-Main.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Main/wicher-Main.o `test -f 'Main/Main.cpp' || echo '$(srcdir)/'`Main/Main.cpp
-
-Main/wicher-Main.obj: Main/Main.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Main/wicher-Main.obj -MD -MP -MF Main/$(DEPDIR)/wicher-Main.Tpo -c -o Main/wicher-Main.obj `if test -f 'Main/Main.cpp'; then $(CYGPATH_W) 'Main/Main.cpp'; else $(CYGPATH_W) '$(srcdir)/Main/Main.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) Main/$(DEPDIR)/wicher-Main.Tpo Main/$(DEPDIR)/wicher-Main.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Main/Main.cpp' object='Main/wicher-Main.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Main/wicher-Main.obj `if test -f 'Main/Main.cpp'; then $(CYGPATH_W) 'Main/Main.cpp'; else $(CYGPATH_W) '$(srcdir)/Main/Main.cpp'; fi`
-
-wicher-main.o: main.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-main.o -MD -MP -MF $(DEPDIR)/wicher-main.Tpo -c -o wicher-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-main.Tpo $(DEPDIR)/wicher-main.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='main.cpp' object='wicher-main.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
-
-wicher-main.obj: main.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wicher-main.obj -MD -MP -MF $(DEPDIR)/wicher-main.Tpo -c -o wicher-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-main.Tpo $(DEPDIR)/wicher-main.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='main.cpp' object='wicher-main.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wicher-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+.c.o:
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
+
+.c.obj:
+@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+wicher-sha256.o: sha256.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-sha256.o -MD -MP -MF $(DEPDIR)/wicher-sha256.Tpo -c -o wicher-sha256.o `test -f 'sha256.c' || echo '$(srcdir)/'`sha256.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-sha256.Tpo $(DEPDIR)/wicher-sha256.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sha256.c' object='wicher-sha256.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-sha256.o `test -f 'sha256.c' || echo '$(srcdir)/'`sha256.c
+
+wicher-sha256.obj: sha256.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-sha256.obj -MD -MP -MF $(DEPDIR)/wicher-sha256.Tpo -c -o wicher-sha256.obj `if test -f 'sha256.c'; then $(CYGPATH_W) 'sha256.c'; else $(CYGPATH_W) '$(srcdir)/sha256.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-sha256.Tpo $(DEPDIR)/wicher-sha256.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sha256.c' object='wicher-sha256.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-sha256.obj `if test -f 'sha256.c'; then $(CYGPATH_W) 'sha256.c'; else $(CYGPATH_W) '$(srcdir)/sha256.c'; fi`
+
+wicher-Toolkit.o: Toolkit.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-Toolkit.o -MD -MP -MF $(DEPDIR)/wicher-Toolkit.Tpo -c -o wicher-Toolkit.o `test -f 'Toolkit.c' || echo '$(srcdir)/'`Toolkit.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Toolkit.Tpo $(DEPDIR)/wicher-Toolkit.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Toolkit.c' object='wicher-Toolkit.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-Toolkit.o `test -f 'Toolkit.c' || echo '$(srcdir)/'`Toolkit.c
+
+wicher-Toolkit.obj: Toolkit.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-Toolkit.obj -MD -MP -MF $(DEPDIR)/wicher-Toolkit.Tpo -c -o wicher-Toolkit.obj `if test -f 'Toolkit.c'; then $(CYGPATH_W) 'Toolkit.c'; else $(CYGPATH_W) '$(srcdir)/Toolkit.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Toolkit.Tpo $(DEPDIR)/wicher-Toolkit.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Toolkit.c' object='wicher-Toolkit.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-Toolkit.obj `if test -f 'Toolkit.c'; then $(CYGPATH_W) 'Toolkit.c'; else $(CYGPATH_W) '$(srcdir)/Toolkit.c'; fi`
+
+wicher-Dialogger.o: Dialogger.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-Dialogger.o -MD -MP -MF $(DEPDIR)/wicher-Dialogger.Tpo -c -o wicher-Dialogger.o `test -f 'Dialogger.c' || echo '$(srcdir)/'`Dialogger.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Dialogger.Tpo $(DEPDIR)/wicher-Dialogger.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Dialogger.c' object='wicher-Dialogger.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-Dialogger.o `test -f 'Dialogger.c' || echo '$(srcdir)/'`Dialogger.c
+
+wicher-Dialogger.obj: Dialogger.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-Dialogger.obj -MD -MP -MF $(DEPDIR)/wicher-Dialogger.Tpo -c -o wicher-Dialogger.obj `if test -f 'Dialogger.c'; then $(CYGPATH_W) 'Dialogger.c'; else $(CYGPATH_W) '$(srcdir)/Dialogger.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Dialogger.Tpo $(DEPDIR)/wicher-Dialogger.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Dialogger.c' object='wicher-Dialogger.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-Dialogger.obj `if test -f 'Dialogger.c'; then $(CYGPATH_W) 'Dialogger.c'; else $(CYGPATH_W) '$(srcdir)/Dialogger.c'; fi`
+
+wicher-Database.o: Database.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-Database.o -MD -MP -MF $(DEPDIR)/wicher-Database.Tpo -c -o wicher-Database.o `test -f 'Database.c' || echo '$(srcdir)/'`Database.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Database.Tpo $(DEPDIR)/wicher-Database.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Database.c' object='wicher-Database.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-Database.o `test -f 'Database.c' || echo '$(srcdir)/'`Database.c
+
+wicher-Database.obj: Database.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-Database.obj -MD -MP -MF $(DEPDIR)/wicher-Database.Tpo -c -o wicher-Database.obj `if test -f 'Database.c'; then $(CYGPATH_W) 'Database.c'; else $(CYGPATH_W) '$(srcdir)/Database.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-Database.Tpo $(DEPDIR)/wicher-Database.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Database.c' object='wicher-Database.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-Database.obj `if test -f 'Database.c'; then $(CYGPATH_W) 'Database.c'; else $(CYGPATH_W) '$(srcdir)/Database.c'; fi`
+
+wicher-DatabaseQuery.o: DatabaseQuery.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-DatabaseQuery.o -MD -MP -MF $(DEPDIR)/wicher-DatabaseQuery.Tpo -c -o wicher-DatabaseQuery.o `test -f 'DatabaseQuery.c' || echo '$(srcdir)/'`DatabaseQuery.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-DatabaseQuery.Tpo $(DEPDIR)/wicher-DatabaseQuery.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='DatabaseQuery.c' object='wicher-DatabaseQuery.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-DatabaseQuery.o `test -f 'DatabaseQuery.c' || echo '$(srcdir)/'`DatabaseQuery.c
+
+wicher-DatabaseQuery.obj: DatabaseQuery.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-DatabaseQuery.obj -MD -MP -MF $(DEPDIR)/wicher-DatabaseQuery.Tpo -c -o wicher-DatabaseQuery.obj `if test -f 'DatabaseQuery.c'; then $(CYGPATH_W) 'DatabaseQuery.c'; else $(CYGPATH_W) '$(srcdir)/DatabaseQuery.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-DatabaseQuery.Tpo $(DEPDIR)/wicher-DatabaseQuery.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='DatabaseQuery.c' object='wicher-DatabaseQuery.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-DatabaseQuery.obj `if test -f 'DatabaseQuery.c'; then $(CYGPATH_W) 'DatabaseQuery.c'; else $(CYGPATH_W) '$(srcdir)/DatabaseQuery.c'; fi`
+
+Splash/wicher-Splash.o: Splash/Splash.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Splash/wicher-Splash.o -MD -MP -MF Splash/$(DEPDIR)/wicher-Splash.Tpo -c -o Splash/wicher-Splash.o `test -f 'Splash/Splash.c' || echo '$(srcdir)/'`Splash/Splash.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Splash/$(DEPDIR)/wicher-Splash.Tpo Splash/$(DEPDIR)/wicher-Splash.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Splash/Splash.c' object='Splash/wicher-Splash.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Splash/wicher-Splash.o `test -f 'Splash/Splash.c' || echo '$(srcdir)/'`Splash/Splash.c
+
+Splash/wicher-Splash.obj: Splash/Splash.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Splash/wicher-Splash.obj -MD -MP -MF Splash/$(DEPDIR)/wicher-Splash.Tpo -c -o Splash/wicher-Splash.obj `if test -f 'Splash/Splash.c'; then $(CYGPATH_W) 'Splash/Splash.c'; else $(CYGPATH_W) '$(srcdir)/Splash/Splash.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Splash/$(DEPDIR)/wicher-Splash.Tpo Splash/$(DEPDIR)/wicher-Splash.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Splash/Splash.c' object='Splash/wicher-Splash.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Splash/wicher-Splash.obj `if test -f 'Splash/Splash.c'; then $(CYGPATH_W) 'Splash/Splash.c'; else $(CYGPATH_W) '$(srcdir)/Splash/Splash.c'; fi`
+
+Splash/wicher-RunServer.o: Splash/RunServer.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Splash/wicher-RunServer.o -MD -MP -MF Splash/$(DEPDIR)/wicher-RunServer.Tpo -c -o Splash/wicher-RunServer.o `test -f 'Splash/RunServer.c' || echo '$(srcdir)/'`Splash/RunServer.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Splash/$(DEPDIR)/wicher-RunServer.Tpo Splash/$(DEPDIR)/wicher-RunServer.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Splash/RunServer.c' object='Splash/wicher-RunServer.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Splash/wicher-RunServer.o `test -f 'Splash/RunServer.c' || echo '$(srcdir)/'`Splash/RunServer.c
+
+Splash/wicher-RunServer.obj: Splash/RunServer.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Splash/wicher-RunServer.obj -MD -MP -MF Splash/$(DEPDIR)/wicher-RunServer.Tpo -c -o Splash/wicher-RunServer.obj `if test -f 'Splash/RunServer.c'; then $(CYGPATH_W) 'Splash/RunServer.c'; else $(CYGPATH_W) '$(srcdir)/Splash/RunServer.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Splash/$(DEPDIR)/wicher-RunServer.Tpo Splash/$(DEPDIR)/wicher-RunServer.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Splash/RunServer.c' object='Splash/wicher-RunServer.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Splash/wicher-RunServer.obj `if test -f 'Splash/RunServer.c'; then $(CYGPATH_W) 'Splash/RunServer.c'; else $(CYGPATH_W) '$(srcdir)/Splash/RunServer.c'; fi`
+
+Main/wicher-Main.o: Main/Main.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Main/wicher-Main.o -MD -MP -MF Main/$(DEPDIR)/wicher-Main.Tpo -c -o Main/wicher-Main.o `test -f 'Main/Main.c' || echo '$(srcdir)/'`Main/Main.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Main/$(DEPDIR)/wicher-Main.Tpo Main/$(DEPDIR)/wicher-Main.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Main/Main.c' object='Main/wicher-Main.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Main/wicher-Main.o `test -f 'Main/Main.c' || echo '$(srcdir)/'`Main/Main.c
+
+Main/wicher-Main.obj: Main/Main.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Main/wicher-Main.obj -MD -MP -MF Main/$(DEPDIR)/wicher-Main.Tpo -c -o Main/wicher-Main.obj `if test -f 'Main/Main.c'; then $(CYGPATH_W) 'Main/Main.c'; else $(CYGPATH_W) '$(srcdir)/Main/Main.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Main/$(DEPDIR)/wicher-Main.Tpo Main/$(DEPDIR)/wicher-Main.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Main/Main.c' object='Main/wicher-Main.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Main/wicher-Main.obj `if test -f 'Main/Main.c'; then $(CYGPATH_W) 'Main/Main.c'; else $(CYGPATH_W) '$(srcdir)/Main/Main.c'; fi`
+
+Toolbar/wicher-ToolbarInfo.o: Toolbar/ToolbarInfo.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Toolbar/wicher-ToolbarInfo.o -MD -MP -MF Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Tpo -c -o Toolbar/wicher-ToolbarInfo.o `test -f 'Toolbar/ToolbarInfo.c' || echo '$(srcdir)/'`Toolbar/ToolbarInfo.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Tpo Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Toolbar/ToolbarInfo.c' object='Toolbar/wicher-ToolbarInfo.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Toolbar/wicher-ToolbarInfo.o `test -f 'Toolbar/ToolbarInfo.c' || echo '$(srcdir)/'`Toolbar/ToolbarInfo.c
+
+Toolbar/wicher-ToolbarInfo.obj: Toolbar/ToolbarInfo.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Toolbar/wicher-ToolbarInfo.obj -MD -MP -MF Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Tpo -c -o Toolbar/wicher-ToolbarInfo.obj `if test -f 'Toolbar/ToolbarInfo.c'; then $(CYGPATH_W) 'Toolbar/ToolbarInfo.c'; else $(CYGPATH_W) '$(srcdir)/Toolbar/ToolbarInfo.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Tpo Toolbar/$(DEPDIR)/wicher-ToolbarInfo.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Toolbar/ToolbarInfo.c' object='Toolbar/wicher-ToolbarInfo.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Toolbar/wicher-ToolbarInfo.obj `if test -f 'Toolbar/ToolbarInfo.c'; then $(CYGPATH_W) 'Toolbar/ToolbarInfo.c'; else $(CYGPATH_W) '$(srcdir)/Toolbar/ToolbarInfo.c'; fi`
+
+Toolbar/wicher-ToolbarOptions.o: Toolbar/ToolbarOptions.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Toolbar/wicher-ToolbarOptions.o -MD -MP -MF Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Tpo -c -o Toolbar/wicher-ToolbarOptions.o `test -f 'Toolbar/ToolbarOptions.c' || echo '$(srcdir)/'`Toolbar/ToolbarOptions.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Tpo Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Toolbar/ToolbarOptions.c' object='Toolbar/wicher-ToolbarOptions.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Toolbar/wicher-ToolbarOptions.o `test -f 'Toolbar/ToolbarOptions.c' || echo '$(srcdir)/'`Toolbar/ToolbarOptions.c
+
+Toolbar/wicher-ToolbarOptions.obj: Toolbar/ToolbarOptions.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Toolbar/wicher-ToolbarOptions.obj -MD -MP -MF Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Tpo -c -o Toolbar/wicher-ToolbarOptions.obj `if test -f 'Toolbar/ToolbarOptions.c'; then $(CYGPATH_W) 'Toolbar/ToolbarOptions.c'; else $(CYGPATH_W) '$(srcdir)/Toolbar/ToolbarOptions.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Tpo Toolbar/$(DEPDIR)/wicher-ToolbarOptions.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Toolbar/ToolbarOptions.c' object='Toolbar/wicher-ToolbarOptions.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Toolbar/wicher-ToolbarOptions.obj `if test -f 'Toolbar/ToolbarOptions.c'; then $(CYGPATH_W) 'Toolbar/ToolbarOptions.c'; else $(CYGPATH_W) '$(srcdir)/Toolbar/ToolbarOptions.c'; fi`
+
+ListsManager/wicher-Constructor.o: ListsManager/Constructor.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ListsManager/wicher-Constructor.o -MD -MP -MF ListsManager/$(DEPDIR)/wicher-Constructor.Tpo -c -o ListsManager/wicher-Constructor.o `test -f 'ListsManager/Constructor.c' || echo '$(srcdir)/'`ListsManager/Constructor.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-Constructor.Tpo ListsManager/$(DEPDIR)/wicher-Constructor.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ListsManager/Constructor.c' object='ListsManager/wicher-Constructor.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ListsManager/wicher-Constructor.o `test -f 'ListsManager/Constructor.c' || echo '$(srcdir)/'`ListsManager/Constructor.c
+
+ListsManager/wicher-Constructor.obj: ListsManager/Constructor.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ListsManager/wicher-Constructor.obj -MD -MP -MF ListsManager/$(DEPDIR)/wicher-Constructor.Tpo -c -o ListsManager/wicher-Constructor.obj `if test -f 'ListsManager/Constructor.c'; then $(CYGPATH_W) 'ListsManager/Constructor.c'; else $(CYGPATH_W) '$(srcdir)/ListsManager/Constructor.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-Constructor.Tpo ListsManager/$(DEPDIR)/wicher-Constructor.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ListsManager/Constructor.c' object='ListsManager/wicher-Constructor.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ListsManager/wicher-Constructor.obj `if test -f 'ListsManager/Constructor.c'; then $(CYGPATH_W) 'ListsManager/Constructor.c'; else $(CYGPATH_W) '$(srcdir)/ListsManager/Constructor.c'; fi`
+
+ListsManager/wicher-Refresh.o: ListsManager/Refresh.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ListsManager/wicher-Refresh.o -MD -MP -MF ListsManager/$(DEPDIR)/wicher-Refresh.Tpo -c -o ListsManager/wicher-Refresh.o `test -f 'ListsManager/Refresh.c' || echo '$(srcdir)/'`ListsManager/Refresh.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-Refresh.Tpo ListsManager/$(DEPDIR)/wicher-Refresh.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ListsManager/Refresh.c' object='ListsManager/wicher-Refresh.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ListsManager/wicher-Refresh.o `test -f 'ListsManager/Refresh.c' || echo '$(srcdir)/'`ListsManager/Refresh.c
+
+ListsManager/wicher-Refresh.obj: ListsManager/Refresh.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ListsManager/wicher-Refresh.obj -MD -MP -MF ListsManager/$(DEPDIR)/wicher-Refresh.Tpo -c -o ListsManager/wicher-Refresh.obj `if test -f 'ListsManager/Refresh.c'; then $(CYGPATH_W) 'ListsManager/Refresh.c'; else $(CYGPATH_W) '$(srcdir)/ListsManager/Refresh.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-Refresh.Tpo ListsManager/$(DEPDIR)/wicher-Refresh.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ListsManager/Refresh.c' object='ListsManager/wicher-Refresh.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ListsManager/wicher-Refresh.obj `if test -f 'ListsManager/Refresh.c'; then $(CYGPATH_W) 'ListsManager/Refresh.c'; else $(CYGPATH_W) '$(srcdir)/ListsManager/Refresh.c'; fi`
+
+ListsManager/wicher-StateManager.o: ListsManager/StateManager.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ListsManager/wicher-StateManager.o -MD -MP -MF ListsManager/$(DEPDIR)/wicher-StateManager.Tpo -c -o ListsManager/wicher-StateManager.o `test -f 'ListsManager/StateManager.c' || echo '$(srcdir)/'`ListsManager/StateManager.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-StateManager.Tpo ListsManager/$(DEPDIR)/wicher-StateManager.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ListsManager/StateManager.c' object='ListsManager/wicher-StateManager.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ListsManager/wicher-StateManager.o `test -f 'ListsManager/StateManager.c' || echo '$(srcdir)/'`ListsManager/StateManager.c
+
+ListsManager/wicher-StateManager.obj: ListsManager/StateManager.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ListsManager/wicher-StateManager.obj -MD -MP -MF ListsManager/$(DEPDIR)/wicher-StateManager.Tpo -c -o ListsManager/wicher-StateManager.obj `if test -f 'ListsManager/StateManager.c'; then $(CYGPATH_W) 'ListsManager/StateManager.c'; else $(CYGPATH_W) '$(srcdir)/ListsManager/StateManager.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ListsManager/$(DEPDIR)/wicher-StateManager.Tpo ListsManager/$(DEPDIR)/wicher-StateManager.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ListsManager/StateManager.c' object='ListsManager/wicher-StateManager.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ListsManager/wicher-StateManager.obj `if test -f 'ListsManager/StateManager.c'; then $(CYGPATH_W) 'ListsManager/StateManager.c'; else $(CYGPATH_W) '$(srcdir)/ListsManager/StateManager.c'; fi`
+
+SignalWindows/wicher-SignalWindows.o: SignalWindows/SignalWindows.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-SignalWindows.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-SignalWindows.Tpo -c -o SignalWindows/wicher-SignalWindows.o `test -f 'SignalWindows/SignalWindows.c' || echo '$(srcdir)/'`SignalWindows/SignalWindows.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-SignalWindows.Tpo SignalWindows/$(DEPDIR)/wicher-SignalWindows.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/SignalWindows.c' object='SignalWindows/wicher-SignalWindows.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-SignalWindows.o `test -f 'SignalWindows/SignalWindows.c' || echo '$(srcdir)/'`SignalWindows/SignalWindows.c
+
+SignalWindows/wicher-SignalWindows.obj: SignalWindows/SignalWindows.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-SignalWindows.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-SignalWindows.Tpo -c -o SignalWindows/wicher-SignalWindows.obj `if test -f 'SignalWindows/SignalWindows.c'; then $(CYGPATH_W) 'SignalWindows/SignalWindows.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/SignalWindows.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-SignalWindows.Tpo SignalWindows/$(DEPDIR)/wicher-SignalWindows.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/SignalWindows.c' object='SignalWindows/wicher-SignalWindows.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-SignalWindows.obj `if test -f 'SignalWindows/SignalWindows.c'; then $(CYGPATH_W) 'SignalWindows/SignalWindows.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/SignalWindows.c'; fi`
+
+SignalWindows/wicher-AddItemsWindow.o: SignalWindows/AddItemsWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-AddItemsWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Tpo -c -o SignalWindows/wicher-AddItemsWindow.o `test -f 'SignalWindows/AddItemsWindow.c' || echo '$(srcdir)/'`SignalWindows/AddItemsWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Tpo SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/AddItemsWindow.c' object='SignalWindows/wicher-AddItemsWindow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-AddItemsWindow.o `test -f 'SignalWindows/AddItemsWindow.c' || echo '$(srcdir)/'`SignalWindows/AddItemsWindow.c
+
+SignalWindows/wicher-AddItemsWindow.obj: SignalWindows/AddItemsWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-AddItemsWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Tpo -c -o SignalWindows/wicher-AddItemsWindow.obj `if test -f 'SignalWindows/AddItemsWindow.c'; then $(CYGPATH_W) 'SignalWindows/AddItemsWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/AddItemsWindow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Tpo SignalWindows/$(DEPDIR)/wicher-AddItemsWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/AddItemsWindow.c' object='SignalWindows/wicher-AddItemsWindow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-AddItemsWindow.obj `if test -f 'SignalWindows/AddItemsWindow.c'; then $(CYGPATH_W) 'SignalWindows/AddItemsWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/AddItemsWindow.c'; fi`
+
+SignalWindows/wicher-CreateItemWindow.o: SignalWindows/CreateItemWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-CreateItemWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Tpo -c -o SignalWindows/wicher-CreateItemWindow.o `test -f 'SignalWindows/CreateItemWindow.c' || echo '$(srcdir)/'`SignalWindows/CreateItemWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/CreateItemWindow.c' object='SignalWindows/wicher-CreateItemWindow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-CreateItemWindow.o `test -f 'SignalWindows/CreateItemWindow.c' || echo '$(srcdir)/'`SignalWindows/CreateItemWindow.c
+
+SignalWindows/wicher-CreateItemWindow.obj: SignalWindows/CreateItemWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-CreateItemWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Tpo -c -o SignalWindows/wicher-CreateItemWindow.obj `if test -f 'SignalWindows/CreateItemWindow.c'; then $(CYGPATH_W) 'SignalWindows/CreateItemWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateItemWindow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateItemWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/CreateItemWindow.c' object='SignalWindows/wicher-CreateItemWindow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-CreateItemWindow.obj `if test -f 'SignalWindows/CreateItemWindow.c'; then $(CYGPATH_W) 'SignalWindows/CreateItemWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateItemWindow.c'; fi`
+
+SignalWindows/wicher-CreatePZWindow.o: SignalWindows/CreatePZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-CreatePZWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Tpo -c -o SignalWindows/wicher-CreatePZWindow.o `test -f 'SignalWindows/CreatePZWindow.c' || echo '$(srcdir)/'`SignalWindows/CreatePZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/CreatePZWindow.c' object='SignalWindows/wicher-CreatePZWindow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-CreatePZWindow.o `test -f 'SignalWindows/CreatePZWindow.c' || echo '$(srcdir)/'`SignalWindows/CreatePZWindow.c
+
+SignalWindows/wicher-CreatePZWindow.obj: SignalWindows/CreatePZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-CreatePZWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Tpo -c -o SignalWindows/wicher-CreatePZWindow.obj `if test -f 'SignalWindows/CreatePZWindow.c'; then $(CYGPATH_W) 'SignalWindows/CreatePZWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreatePZWindow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreatePZWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/CreatePZWindow.c' object='SignalWindows/wicher-CreatePZWindow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-CreatePZWindow.obj `if test -f 'SignalWindows/CreatePZWindow.c'; then $(CYGPATH_W) 'SignalWindows/CreatePZWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreatePZWindow.c'; fi`
+
+SignalWindows/wicher-CreateWZWindow.o: SignalWindows/CreateWZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-CreateWZWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Tpo -c -o SignalWindows/wicher-CreateWZWindow.o `test -f 'SignalWindows/CreateWZWindow.c' || echo '$(srcdir)/'`SignalWindows/CreateWZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/CreateWZWindow.c' object='SignalWindows/wicher-CreateWZWindow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-CreateWZWindow.o `test -f 'SignalWindows/CreateWZWindow.c' || echo '$(srcdir)/'`SignalWindows/CreateWZWindow.c
+
+SignalWindows/wicher-CreateWZWindow.obj: SignalWindows/CreateWZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-CreateWZWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Tpo -c -o SignalWindows/wicher-CreateWZWindow.obj `if test -f 'SignalWindows/CreateWZWindow.c'; then $(CYGPATH_W) 'SignalWindows/CreateWZWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateWZWindow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateWZWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/CreateWZWindow.c' object='SignalWindows/wicher-CreateWZWindow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-CreateWZWindow.obj `if test -f 'SignalWindows/CreateWZWindow.c'; then $(CYGPATH_W) 'SignalWindows/CreateWZWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateWZWindow.c'; fi`
+
+SignalWindows/wicher-CreateTypeWindow.o: SignalWindows/CreateTypeWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-CreateTypeWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Tpo -c -o SignalWindows/wicher-CreateTypeWindow.o `test -f 'SignalWindows/CreateTypeWindow.c' || echo '$(srcdir)/'`SignalWindows/CreateTypeWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/CreateTypeWindow.c' object='SignalWindows/wicher-CreateTypeWindow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-CreateTypeWindow.o `test -f 'SignalWindows/CreateTypeWindow.c' || echo '$(srcdir)/'`SignalWindows/CreateTypeWindow.c
+
+SignalWindows/wicher-CreateTypeWindow.obj: SignalWindows/CreateTypeWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-CreateTypeWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Tpo -c -o SignalWindows/wicher-CreateTypeWindow.obj `if test -f 'SignalWindows/CreateTypeWindow.c'; then $(CYGPATH_W) 'SignalWindows/CreateTypeWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateTypeWindow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Tpo SignalWindows/$(DEPDIR)/wicher-CreateTypeWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/CreateTypeWindow.c' object='SignalWindows/wicher-CreateTypeWindow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-CreateTypeWindow.obj `if test -f 'SignalWindows/CreateTypeWindow.c'; then $(CYGPATH_W) 'SignalWindows/CreateTypeWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/CreateTypeWindow.c'; fi`
+
+SignalWindows/wicher-InfoTypeWindow.o: SignalWindows/InfoTypeWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-InfoTypeWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Tpo -c -o SignalWindows/wicher-InfoTypeWindow.o `test -f 'SignalWindows/InfoTypeWindow.c' || echo '$(srcdir)/'`SignalWindows/InfoTypeWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/InfoTypeWindow.c' object='SignalWindows/wicher-InfoTypeWindow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-InfoTypeWindow.o `test -f 'SignalWindows/InfoTypeWindow.c' || echo '$(srcdir)/'`SignalWindows/InfoTypeWindow.c
+
+SignalWindows/wicher-InfoTypeWindow.obj: SignalWindows/InfoTypeWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-InfoTypeWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Tpo -c -o SignalWindows/wicher-InfoTypeWindow.obj `if test -f 'SignalWindows/InfoTypeWindow.c'; then $(CYGPATH_W) 'SignalWindows/InfoTypeWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoTypeWindow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoTypeWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/InfoTypeWindow.c' object='SignalWindows/wicher-InfoTypeWindow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-InfoTypeWindow.obj `if test -f 'SignalWindows/InfoTypeWindow.c'; then $(CYGPATH_W) 'SignalWindows/InfoTypeWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoTypeWindow.c'; fi`
+
+SignalWindows/wicher-InfoPZWindow.o: SignalWindows/InfoPZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-InfoPZWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Tpo -c -o SignalWindows/wicher-InfoPZWindow.o `test -f 'SignalWindows/InfoPZWindow.c' || echo '$(srcdir)/'`SignalWindows/InfoPZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/InfoPZWindow.c' object='SignalWindows/wicher-InfoPZWindow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-InfoPZWindow.o `test -f 'SignalWindows/InfoPZWindow.c' || echo '$(srcdir)/'`SignalWindows/InfoPZWindow.c
+
+SignalWindows/wicher-InfoPZWindow.obj: SignalWindows/InfoPZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-InfoPZWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Tpo -c -o SignalWindows/wicher-InfoPZWindow.obj `if test -f 'SignalWindows/InfoPZWindow.c'; then $(CYGPATH_W) 'SignalWindows/InfoPZWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoPZWindow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoPZWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/InfoPZWindow.c' object='SignalWindows/wicher-InfoPZWindow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-InfoPZWindow.obj `if test -f 'SignalWindows/InfoPZWindow.c'; then $(CYGPATH_W) 'SignalWindows/InfoPZWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoPZWindow.c'; fi`
+
+SignalWindows/wicher-InfoWZWindow.o: SignalWindows/InfoWZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-InfoWZWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Tpo -c -o SignalWindows/wicher-InfoWZWindow.o `test -f 'SignalWindows/InfoWZWindow.c' || echo '$(srcdir)/'`SignalWindows/InfoWZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/InfoWZWindow.c' object='SignalWindows/wicher-InfoWZWindow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-InfoWZWindow.o `test -f 'SignalWindows/InfoWZWindow.c' || echo '$(srcdir)/'`SignalWindows/InfoWZWindow.c
+
+SignalWindows/wicher-InfoWZWindow.obj: SignalWindows/InfoWZWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-InfoWZWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Tpo -c -o SignalWindows/wicher-InfoWZWindow.obj `if test -f 'SignalWindows/InfoWZWindow.c'; then $(CYGPATH_W) 'SignalWindows/InfoWZWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoWZWindow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoWZWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/InfoWZWindow.c' object='SignalWindows/wicher-InfoWZWindow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-InfoWZWindow.obj `if test -f 'SignalWindows/InfoWZWindow.c'; then $(CYGPATH_W) 'SignalWindows/InfoWZWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoWZWindow.c'; fi`
+
+SignalWindows/wicher-InfoItemWindow.o: SignalWindows/InfoItemWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-InfoItemWindow.o -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Tpo -c -o SignalWindows/wicher-InfoItemWindow.o `test -f 'SignalWindows/InfoItemWindow.c' || echo '$(srcdir)/'`SignalWindows/InfoItemWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/InfoItemWindow.c' object='SignalWindows/wicher-InfoItemWindow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-InfoItemWindow.o `test -f 'SignalWindows/InfoItemWindow.c' || echo '$(srcdir)/'`SignalWindows/InfoItemWindow.c
+
+SignalWindows/wicher-InfoItemWindow.obj: SignalWindows/InfoItemWindow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT SignalWindows/wicher-InfoItemWindow.obj -MD -MP -MF SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Tpo -c -o SignalWindows/wicher-InfoItemWindow.obj `if test -f 'SignalWindows/InfoItemWindow.c'; then $(CYGPATH_W) 'SignalWindows/InfoItemWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoItemWindow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Tpo SignalWindows/$(DEPDIR)/wicher-InfoItemWindow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='SignalWindows/InfoItemWindow.c' object='SignalWindows/wicher-InfoItemWindow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o SignalWindows/wicher-InfoItemWindow.obj `if test -f 'SignalWindows/InfoItemWindow.c'; then $(CYGPATH_W) 'SignalWindows/InfoItemWindow.c'; else $(CYGPATH_W) '$(srcdir)/SignalWindows/InfoItemWindow.c'; fi`
+
+wicher-main.o: main.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-main.o -MD -MP -MF $(DEPDIR)/wicher-main.Tpo -c -o wicher-main.o `test -f 'main.c' || echo '$(srcdir)/'`main.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-main.Tpo $(DEPDIR)/wicher-main.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='main.c' object='wicher-main.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-main.o `test -f 'main.c' || echo '$(srcdir)/'`main.c
+
+wicher-main.obj: main.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wicher-main.obj -MD -MP -MF $(DEPDIR)/wicher-main.Tpo -c -o wicher-main.obj `if test -f 'main.c'; then $(CYGPATH_W) 'main.c'; else $(CYGPATH_W) '$(srcdir)/main.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/wicher-main.Tpo $(DEPDIR)/wicher-main.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='main.c' object='wicher-main.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(wicher_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wicher-main.obj `if test -f 'main.c'; then $(CYGPATH_W) 'main.c'; else $(CYGPATH_W) '$(srcdir)/main.c'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1152,8 +1030,6 @@ distclean-generic:
 	-rm -f ListsManager/$(am__dirstamp)
 	-rm -f Main/$(DEPDIR)/$(am__dirstamp)
 	-rm -f Main/$(am__dirstamp)
-	-rm -f PDF/$(DEPDIR)/$(am__dirstamp)
-	-rm -f PDF/$(am__dirstamp)
 	-rm -f SignalWindows/$(DEPDIR)/$(am__dirstamp)
 	-rm -f SignalWindows/$(am__dirstamp)
 	-rm -f Splash/$(DEPDIR)/$(am__dirstamp)
@@ -1169,7 +1045,7 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR) ListsManager/$(DEPDIR) Main/$(DEPDIR) PDF/$(DEPDIR) SignalWindows/$(DEPDIR) Splash/$(DEPDIR) Toolbar/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) ListsManager/$(DEPDIR) Main/$(DEPDIR) SignalWindows/$(DEPDIR) Splash/$(DEPDIR) Toolbar/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -1215,7 +1091,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR) ListsManager/$(DEPDIR) Main/$(DEPDIR) PDF/$(DEPDIR) SignalWindows/$(DEPDIR) Splash/$(DEPDIR) Toolbar/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) ListsManager/$(DEPDIR) Main/$(DEPDIR) SignalWindows/$(DEPDIR) Splash/$(DEPDIR) Toolbar/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

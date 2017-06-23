@@ -43,6 +43,8 @@
       <column type="gint"/>
       <!-- column-name comment -->
       <column type="gchararray"/>
+      <!-- column-name editable -->
+      <column type="gboolean"/>
     </columns>
   </object>
   <object class="GtkListStore" id="wz_list">
@@ -65,6 +67,7 @@
     <property name="window_position">center</property>
     <property name="default_width">1024</property>
     <property name="default_height">768</property>
+    <signal name="destroy" handler="gtk_main_quit" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -96,6 +99,7 @@
                         <property name="search_column">1</property>
                         <property name="show_expanders">False</property>
                         <property name="enable_grid_lines">both</property>
+                        <signal name="row-activated" handler="signalwindows_show_info_type_window" swapped="no"/>
                         <child internal-child="selection">
                           <object class="GtkTreeSelection"/>
                         </child>
@@ -109,8 +113,11 @@
                             <property name="sort_indicator">True</property>
                             <property name="sort_column_id">1</property>
                             <child>
-                              <object class="GtkCellRendererText"/>
+                              <object class="GtkCellRendererText">
+                                <signal name="edited" handler="listsmanager_on_type_name_edited" swapped="no"/>
+                              </object>
                               <attributes>
+                                <attribute name="editable">6</attribute>
                                 <attribute name="text">1</attribute>
                               </attributes>
                             </child>
@@ -191,8 +198,11 @@
                             <property name="sort_indicator">True</property>
                             <property name="sort_column_id">5</property>
                             <child>
-                              <object class="GtkCellRendererText"/>
+                              <object class="GtkCellRendererText">
+                                <signal name="edited" handler="listsmanager_on_type_comment_edited" swapped="no"/>
+                              </object>
                               <attributes>
+                                <attribute name="editable">6</attribute>
                                 <attribute name="text">5</attribute>
                               </attributes>
                             </child>
@@ -211,6 +221,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <signal name="clicked" handler="signalwindows_show_create_type_window" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -254,6 +265,7 @@
                     <property name="model">wz_list</property>
                     <property name="search_column">1</property>
                     <property name="enable_grid_lines">both</property>
+                    <signal name="row-activated" handler="signalwindows_show_info_wz_window" swapped="no"/>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection"/>
                     </child>
@@ -346,6 +358,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <signal name="clicked" handler="signalwindows_show_create_wz_window" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -376,6 +389,7 @@
                 <property name="model">pz_list</property>
                 <property name="search_column">2</property>
                 <property name="enable_grid_lines">both</property>
+                <signal name="row-activated" handler="signalwindows_show_info_pz_window" swapped="no"/>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection"/>
                 </child>
@@ -544,6 +558,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="options_window_show" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -557,6 +572,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="listsmanager_refresh_all_void" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -570,6 +586,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="info_window_show" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>

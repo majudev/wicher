@@ -9,6 +9,7 @@
     <property name="default_width">800</property>
     <property name="default_height">600</property>
     <property name="destroy_with_parent">True</property>
+    <signal name="delete-event" handler="gtk_widget_hide_on_delete" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -231,7 +232,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">WICHER v2.2 ALPHA
+                    <property name="label" translatable="yes">WICHER v2.3.2 ALPHA
 ©2016 majudev.net</property>
                     <property name="justify">center</property>
                   </object>
@@ -261,6 +262,9 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <signal name="clicked" handler="info_window_on_ok_click" swapped="no"/>
+            <accelerator key="Escape" signal="clicked"/>
+            <accelerator key="Return" signal="clicked"/>
           </object>
           <packing>
             <property name="expand">False</property>

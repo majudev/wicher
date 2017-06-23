@@ -1,13 +1,15 @@
-AC_INIT([Wicher], [2.3.1], [maju@majudev.net])
+AC_INIT([Wicher], [2.3.2], [maju@majudev.net])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AC_CONFIG_MACRO_DIR([m4])
 AX_BOOST_BASE([1.58])
 AX_BOOST_THREAD
 AX_BOOST_SYSTEM
+AC_PROG_CC
 AC_PROG_CXX
 CHECK_HPDF
 AC_CONFIG_HEADERS([buildconfig.h])
 PKG_CHECK_MODULES([gtkmm3], [gtkmm-3.0])
+PKG_CHECK_MODULES([gtk3], [gtk+-3.0])
 PKG_CHECK_MODULES([jansson], [jansson])
 
 #AC_CANONICAL_HOST

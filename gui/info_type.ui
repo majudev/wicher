@@ -12,6 +12,7 @@
     <property name="title" translatable="yes">Dodaj przedmioty</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
+    <signal name="delete-event" handler="gtk_widget_hide_on_delete" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -213,6 +214,8 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <signal name="clicked" handler="signalwindows_on_add_items_ok_button_clicked" swapped="no"/>
+            <accelerator key="Return" signal="clicked"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -229,6 +232,7 @@
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="destroy_with_parent">True</property>
+    <signal name="delete-event" handler="gtk_widget_hide_on_delete" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -509,6 +513,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <signal name="clicked" handler="signalwindows_on_info_type_delete_button_clicked" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -522,6 +527,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <signal name="clicked" handler="signalwindows_on_info_type_add_button_clicked" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -549,6 +555,8 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <signal name="clicked" handler="signalwindows_on_info_type_close_button_clicked" swapped="no"/>
+            <accelerator key="Return" signal="clicked"/>
           </object>
           <packing>
             <property name="expand">False</property>
