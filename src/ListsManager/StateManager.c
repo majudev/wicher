@@ -4,9 +4,6 @@
 #include <string.h>
 #include <jansson.h>
 
-//void listsmanager_on_type_name_edited(GtkCellRendererText * renderer, gchar * path_string, gchar * new_text, gpointer user_data);
-//void listsmanager_on_type_comment_edited(GtkCellRendererText * renderer, gchar * path_string, gchar * new_text, gpointer user_data);
-void listsmanager_on_item_comment_edited(GtkCellRendererText * renderer, gchar * path_string, gchar * new_text, gpointer user_data);
 void listsmanager_on_item_checkbox_toggled(GtkCellRendererToggle * cell_renderer, gchar * path_string, gpointer user_data);
 
 bool listsmanager_refresh_types(){
@@ -43,8 +40,7 @@ bool listsmanager_refresh_types(){
                                               TYPE_COLUMNS_AVAILABLE, total-unavailable,
                                               TYPE_COLUMNS_UNAVAILABLE, unavailable,
                                               TYPE_COLUMNS_TOTAL, total,
-                                              TYPE_COLUMNS_COMMENT, comment_str,
-                                              TYPE_COLUMNS_EDITABLE, true, -1);
+                                              TYPE_COLUMNS_COMMENT, comment_str, -1);
                         }
                         ++x;
                     }
@@ -148,8 +144,7 @@ bool listsmanager_refresh_lists(){
         renderer = gtk_cell_renderer_text_new();
         column = gtk_tree_view_column_new_with_attributes("Komentarz", renderer, "text", ENTRY_COLUMNS_COMMENT, NULL);
         gtk_tree_view_column_set_expand(column, true);
-        g_object_set(G_OBJECT(renderer), "editable", true);
-        g_signal_connect(renderer, "edited", G_CALLBACK(listsmanager_on_item_comment_edited), NULL);
+        g_object_set(G_OBJECT(renderer), "editable", false);
         gtk_tree_view_append_column (GTK_TREE_VIEW (view), column);
         
         renderer = gtk_cell_renderer_toggle_new();
@@ -180,89 +175,6 @@ bool listsmanager_refresh_lists(){
     }
     gtk_widget_show_all(GTK_WIDGET(state_notepad));
     return true;
-}
-
-void listsmanager_on_type_name_edited(GtkCellRendererText * renderer, gchar * path_string, gchar * new_text, gpointer user_data){
-    if(new_text[0]) return;
-    GtkTreePath * path = gtk_tree_path_new_from_string(path_string);
-    GtkTreeIter iter;
-    bool res = gtk_tree_model_get_iter(GTK_TREE_MODEL(type_list), &iter, path);
-    gtk_tree_path_free(path);
-    if(res){
-        const char * id;
-        gtk_tree_model_get (GTK_TREE_MODEL(type_list), &iter,
-                            TYPE_COLUMNS_ID, &id, -1);
-        char * response = database_run(database_query_change_type(id, new_text, false, ""));
-        json_error_t error;
-        json_t * root = json_loads(response, 0, &error);
-        json_t * r = json_object_get(root, "response");
-        if(!json_is_string(r) || strcmp(json_string_value(r), "ok")){
-            show_dialog_update_error();
-        }else{
-            gtk_list_store_set(type_list, &iter,
-                               TYPE_COLUMNS_NAME, new_text, -1);
-            if(!listsmanager_refresh_lists()) show_dialog_refresh_error();
-        }
-        free(root);
-    }
-}
-
-void listsmanager_on_type_comment_edited(GtkCellRendererText * renderer, gchar * path_string, gchar * new_text, gpointer user_data){
-    GtkTreePath * path = gtk_tree_path_new_from_string(path_string);
-    GtkTreeIter iter;
-    bool res = gtk_tree_model_get_iter(GTK_TREE_MODEL(type_list), &iter, path);
-    gtk_tree_path_free(path);
-    if(res){
-        const char * id;
-        gtk_tree_model_get (GTK_TREE_MODEL(type_list), &iter,
-                            TYPE_COLUMNS_ID, &id, -1);
-        char * response = database_run(database_query_change_type(id, "", true, new_text));
-        json_error_t error;
-        json_t * root = json_loads(response, 0, &error);
-        json_t * r = json_object_get(root, "response");
-        if(!json_is_string(r) || strcmp(json_string_value(r), "ok")){
-            show_dialog_update_error();
-        }else{
-            gtk_list_store_set(type_list, &iter,
-                               TYPE_COLUMNS_COMMENT, new_text, -1);
-            if(!listsmanager_refresh_lists()) show_dialog_refresh_error();
-        }
-        free(root);
-    }
-}
-
-void listsmanager_on_item_comment_edited(GtkCellRendererText * renderer, gchar * path_string, gchar * new_text, gpointer user_data){
-    GtkTreePath * path = gtk_tree_path_new_from_string(path_string);
-    const char * label = gtk_notebook_get_tab_label_text(state_notepad, gtk_notebook_get_nth_page(state_notepad, gtk_notebook_get_current_page(state_notepad)));
-    GtkWidget * box = gtk_notebook_get_nth_page(state_notepad, gtk_notebook_get_current_page(state_notepad));
-    GList * box_children = gtk_container_get_children(GTK_CONTAINER(box));
-    GtkScrolledWindow * swin_widget = GTK_SCROLLED_WINDOW(g_list_nth_data(box_children, 0));
-    g_list_free(box_children);
-    GList * swin_children = gtk_container_get_children(GTK_CONTAINER(swin_widget));
-    GtkTreeView * tree_widget = GTK_TREE_VIEW(g_list_nth_data(swin_children, 0));
-    g_list_free(swin_children);
-    GtkListStore * list = GTK_LIST_STORE(gtk_tree_view_get_model(tree_widget));
-    GtkTreeIter iter;
-    bool res = gtk_tree_model_get_iter(GTK_TREE_MODEL(list), &iter, path);
-    gtk_tree_path_free(path);
-    if(res){
-        int id;
-        const char * type;
-        gtk_tree_model_get (GTK_TREE_MODEL(list), &iter,
-                            ENTRY_COLUMNS_ID, &id, 
-                            ENTRY_COLUMNS_TYPE, &type, -1);
-        char * response = database_run(database_query_change_item(id, type, new_text));
-        json_error_t error;
-        json_t * root = json_loads(response, 0, &error);
-        json_t * r = json_object_get(root, "response");
-        if(!json_is_string(r) || strcmp(json_string_value(r), "ok")){
-            show_dialog_update_error();
-        }else{
-            gtk_list_store_set(list, &iter,
-                               ENTRY_COLUMNS_COMMENT, new_text, -1);
-        }
-        free(root);
-    }
 }
 
 void listsmanager_on_item_checkbox_toggled(GtkCellRendererToggle * cell_renderer, gchar * path_string, gpointer user_data){
