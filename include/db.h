@@ -5,10 +5,11 @@
 
 #ifdef WIN
 #include <winsock2.h>
-#include <Windows.h>
+#include <windows.h>
 #include <io.h>
 #define bzero(b,len) (memset((b), '\0', (len)), (void) 0)
 #define bcopy(b1,b2,len) (memmove((b2), (b1), (len)), (void) 0)
+typedef unsigned short uint16_t;
 #elif defined(UNI)
 #include <unistd.h>
 #include <sys/types.h>

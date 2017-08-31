@@ -58,7 +58,7 @@ wicher_SOURCES = \
 	SignalWindows/InfoItemWindow.c \
 	main.c
 wicher_CPPFLAGS = $(gtk3_CFLAGS) $(jansson_CFLAGS) $(AM_CPPFLAGS)
-wicher_LDFLAGS = -rdynamic
+#wicher_LDFLAGS = -rdynamic
 wicher_LDADD = $(gtk3_LIBS) $(jansson_LIBS) -lhpdf
 if USE_WINSOCK
 	wicher_LDADD += -lws2_32

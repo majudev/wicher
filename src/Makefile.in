@@ -128,8 +128,6 @@ am_wicher_OBJECTS = wicher-sha256.$(OBJEXT) wicher-Toolkit.$(OBJEXT) \
 wicher_OBJECTS = $(am_wicher_OBJECTS)
 am__DEPENDENCIES_1 =
 wicher_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
-wicher_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(wicher_LDFLAGS) \
-	$(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -193,6 +191,7 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
+AM_LDFLAGS = @AM_LDFLAGS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -361,7 +360,7 @@ wicher_SOURCES = \
 	main.c
 
 wicher_CPPFLAGS = $(gtk3_CFLAGS) $(jansson_CFLAGS) $(AM_CPPFLAGS)
-wicher_LDFLAGS = -rdynamic
+#wicher_LDFLAGS = -rdynamic
 wicher_LDADD = $(gtk3_LIBS) $(jansson_LIBS) -lhpdf
 all: all-am
 
@@ -519,7 +518,7 @@ SignalWindows/wicher-InfoItemWindow.$(OBJEXT):  \
 
 wicher$(EXEEXT): $(wicher_OBJECTS) $(wicher_DEPENDENCIES) $(EXTRA_wicher_DEPENDENCIES) 
 	@rm -f wicher$(EXEEXT)
-	$(AM_V_CCLD)$(wicher_LINK) $(wicher_OBJECTS) $(wicher_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(LINK) $(wicher_OBJECTS) $(wicher_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

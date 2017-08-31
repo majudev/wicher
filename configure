@@ -625,6 +625,7 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
+AM_LDFLAGS
 USE_WINSOCK_FALSE
 USE_WINSOCK_TRUE
 EGREP
@@ -7134,6 +7135,34 @@ else
   USE_WINSOCK_TRUE='#'
   USE_WINSOCK_FALSE=
 fi
+
+
+my_save_cflags="$CFLAGS"
+CFLAGS=-rdynamic
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether CC supports -rdynamic" >&5
+$as_echo_n "checking whether CC supports -rdynamic... " >&6; }
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+    AM_LDFLAGS=-rdynamic
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+CFLAGS="$my_save_cflags"
 
 
 ac_config_files="$ac_config_files Makefile src/Makefile src/server/Makefile"

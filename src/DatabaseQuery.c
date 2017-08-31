@@ -4,7 +4,7 @@
 #include "sha256.h"
 
 char * database_query_login(const char * login, const char * password){
-    BYTE buffer[SHA256_BLOCK_SIZE];
+    SHA256_BYTE buffer[SHA256_BLOCK_SIZE];
     SHA256_CTX ctx;
     sha256_init(&ctx);
 	sha256_update(&ctx, password, strlen(password));

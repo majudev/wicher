@@ -15,6 +15,17 @@ AC_CHECK_HEADERS([winsock2.h], [USE_WINSOCK=1], [USE_WINSOCK=0])
 AC_CHECK_LIB([ws2_32], [WSACleanup])
 AM_CONDITIONAL([USE_WINSOCK], [test "$ac_cv_lib_ws2_32_WSACleanup" = "yes"])
 
+my_save_cflags="$CFLAGS"
+CFLAGS=-rdynamic
+AC_MSG_CHECKING([whether CC supports -rdynamic])
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([])],
+    [AC_MSG_RESULT([yes])]
+    [AM_LDFLAGS=-rdynamic],
+    [AC_MSG_RESULT([no])]
+)
+CFLAGS="$my_save_cflags"
+AC_SUBST([AM_LDFLAGS])
+
 AC_CONFIG_FILES([
 	Makefile
 	src/Makefile
