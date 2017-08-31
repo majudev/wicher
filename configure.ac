@@ -11,9 +11,8 @@ AC_CONFIG_HEADERS([buildconfig.h])
 PKG_CHECK_MODULES([gtk3], [gtk+-3.0])
 PKG_CHECK_MODULES([jansson], [jansson])
 
-AC_CHECK_HEADERS([winsock2.h], [USE_WINSOCK=1], [USE_WINSOCK=0])
-AC_CHECK_LIB([ws2_32], [WSACleanup])
-AM_CONDITIONAL([USE_WINSOCK], [test "$ac_cv_lib_ws2_32_WSACleanup" = "yes"])
+AC_CHECK_HEADERS([winsock2.h], [WINSOCK="yes"])
+AM_CONDITIONAL([USE_WINSOCK], [test "$WINSOCK" = "yes"])
 
 my_save_cflags="$CFLAGS"
 CFLAGS=-rdynamic
@@ -22,6 +21,14 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([])],
     [AC_MSG_RESULT([yes])]
     [AM_LDFLAGS=-rdynamic],
     [AC_MSG_RESULT([no])]
+    [CFLAGS=-Wl,--export-all-symbols]
+    [AC_MSG_CHECKING([whether CC supports -Wl,--export-all-symbols])]
+    [AC_COMPILE_IFELSE([AC_LANG_PROGRAM([])],
+        [AC_MSG_RESULT([yes])]
+        [AM_LDFLAGS=-Wl,--export-all-symbols],
+        [AC_MSG_RESULT([no])]
+        [AC_MSG_ERROR([your CC doesn't support -rdynamic nor -Wl,--export-all-symbols])]
+    )]
 )
 CFLAGS="$my_save_cflags"
 AC_SUBST([AM_LDFLAGS])

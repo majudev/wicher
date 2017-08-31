@@ -7076,59 +7076,12 @@ if test "x$ac_cv_header_winsock2_h" = xyes; then :
   cat >>confdefs.h <<_ACEOF
 #define HAVE_WINSOCK2_H 1
 _ACEOF
- USE_WINSOCK=1
-else
-  USE_WINSOCK=0
+ WINSOCK="yes"
 fi
 
 done
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for WSACleanup in -lws2_32" >&5
-$as_echo_n "checking for WSACleanup in -lws2_32... " >&6; }
-if ${ac_cv_lib_ws2_32_WSACleanup+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lws2_32  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char WSACleanup ();
-int
-main ()
-{
-return WSACleanup ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_ws2_32_WSACleanup=yes
-else
-  ac_cv_lib_ws2_32_WSACleanup=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_ws2_32_WSACleanup" >&5
-$as_echo "$ac_cv_lib_ws2_32_WSACleanup" >&6; }
-if test "x$ac_cv_lib_ws2_32_WSACleanup" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBWS2_32 1
-_ACEOF
-
-  LIBS="-lws2_32 $LIBS"
-
-fi
-
- if test "$ac_cv_lib_ws2_32_WSACleanup" = "yes"; then
+ if test "$WINSOCK" = "yes"; then
   USE_WINSOCK_TRUE=
   USE_WINSOCK_FALSE='#'
 else
@@ -7159,6 +7112,31 @@ $as_echo "yes" >&6; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
+    CFLAGS=-Wl,--export-all-symbols
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether CC supports -Wl,--export-all-symbols" >&5
+$as_echo_n "checking whether CC supports -Wl,--export-all-symbols... " >&6; }
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+        AM_LDFLAGS=-Wl,--export-all-symbols
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        as_fn_error $? "your CC doesn't support -rdynamic nor -Wl,--export-all-symbols" "$LINENO" 5
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext

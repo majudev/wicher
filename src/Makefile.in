@@ -89,6 +89,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = wicher$(EXEEXT)
+@USE_WINSOCK_TRUE@am__append_1 = -lws2_32
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_boost_base.m4 \
@@ -127,7 +128,8 @@ am_wicher_OBJECTS = wicher-sha256.$(OBJEXT) wicher-Toolkit.$(OBJEXT) \
 	wicher-main.$(OBJEXT)
 wicher_OBJECTS = $(am_wicher_OBJECTS)
 am__DEPENDENCIES_1 =
-wicher_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+wicher_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -301,38 +303,6 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include
-#wicher_SOURCES = Toolkit.cpp \
-#	Config.cpp \
-#	Dialogger.cpp \
-#	Splash/RunServer.cpp \
-#	Splash/Splash.cpp \
-#	Database.cpp \
-#	DatabaseQuery.cpp \
-#	sha256.cpp \
-#	Main/Builder.cpp \
-#	Toolbar/ToolbarOptions.cpp \
-#	Toolbar/ToolbarInfo.cpp \
-#	SignalWindows/CreateTypeWindow.cpp \
-#	SignalWindows/CreateItemWindow.cpp \
-#	SignalWindows/CreateWZWindow.cpp \
-#	SignalWindows/CreatePZWindow.cpp \
-#	SignalWindows/InfoTypeWindow.cpp \
-#	SignalWindows/AddItemsWindow.cpp \
-#	SignalWindows/InfoItemWindow.cpp \
-#	SignalWindows/InfoWZWindow.cpp \
-#	SignalWindows/InfoPZWindow.cpp \
-#	SignalWindows/SignalWindows.cpp \
-#	ListsManager/StateManager.cpp \
-#	ListsManager/Refresh.cpp \
-#	ListsManager/ColumnModels.cpp \
-#	ListsManager/Constructor.cpp \
-#	ListsManager/ListsSignals.cpp \
-#	ListsManager/ListsEditSignals.cpp \
-#	PDF/entry_gen.cpp \
-#	PDF/wz_gen.cpp \
-#	PDF/pz_gen.cpp \
-#	Main/Main.cpp \
-#	main.cpp
 wicher_SOURCES = \
 	sha256.c \
 	Toolkit.c \
@@ -360,8 +330,7 @@ wicher_SOURCES = \
 	main.c
 
 wicher_CPPFLAGS = $(gtk3_CFLAGS) $(jansson_CFLAGS) $(AM_CPPFLAGS)
-#wicher_LDFLAGS = -rdynamic
-wicher_LDADD = $(gtk3_LIBS) $(jansson_LIBS) -lhpdf
+wicher_LDADD = $(gtk3_LIBS) $(jansson_LIBS) -lhpdf $(am__append_1)
 all: all-am
 
 .SUFFIXES:
@@ -1124,7 +1093,6 @@ uninstall-am: uninstall-binPROGRAMS
 
 .PRECIOUS: Makefile
 
-@USE_WINSOCK_TRUE@	wicher_LDADD += -lws2_32
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -10,7 +10,7 @@
 
 #if defined(_WIN32) || defined(WIN32)
 #include <winsock2.h>
-#include <Windows.h>
+#include <windows.h>
 #include <io.h>
 #define bzero(b,len) (memset((b), '\0', (len)), (void) 0)
 #define WIN
