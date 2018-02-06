@@ -9,7 +9,7 @@ GtkButton * splash_run_button = NULL;
 
 void splash_on_connect(){
     const char * h_string = "majudev.net";
-    int p_int = 9;
+    int p_int = 63431;
     const char * un_string = gtk_entry_get_text(splash_username_entry);
     const char * ps_string = gtk_entry_get_text(splash_password_entry);
     if(un_string[0] && ps_string[0]){
